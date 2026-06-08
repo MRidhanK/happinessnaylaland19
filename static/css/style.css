@@ -1,0 +1,1830 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#111;
+    color:white;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    padding: 0;
+}
+
+section{
+    width: 100%;
+    box-sizing: border-box;
+}
+#curtain{
+    position:fixed;
+    inset:0;
+    z-index:999;
+}
+
+.curtain-left,
+.curtain-right{
+    position:absolute;
+    top:0;
+    width:50%;
+    height:100%;
+    background:#8b0000;
+    transition:2s;
+}
+
+.curtain-left{
+    left:0;
+}
+
+.curtain-right{
+    right:0;
+}
+
+.open-left{
+    transform:translateX(-100%);
+}
+
+.open-right{
+    transform:translateX(100%);
+}
+
+.ticket-container{
+
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:1000;
+}
+
+.ticket{
+
+    width:420px;
+
+    max-width:90%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #fff6d5,
+        #ffe08a
+    );
+
+    color:#111;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 0 40px rgba(255,215,0,.4);
+
+    animation:
+    ticketFloat 3s ease-in-out infinite;
+}
+
+.ticket-top{
+
+    background:#8b0000;
+
+    color:white;
+
+    text-align:center;
+
+    padding:15px;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+}
+
+.ticket-body{
+
+    padding:30px;
+
+    text-align:center;
+}
+
+.ticket-body h1{
+    color: #8b0000;
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.ticket-body h2{
+
+    font-size:1rem;
+
+    letter-spacing:2px;
+}
+
+.ticket-bottom{
+
+    background:#8b0000;
+
+    color:white;
+
+    text-align:center;
+
+    padding:10px;
+}
+@keyframes ticketFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+}
+.scanner{
+
+    position:absolute;
+
+    width:420px;
+    max-width:90%;
+
+    height:5px;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        transparent,
+        #00ff99,
+        transparent
+    );
+
+    box-shadow:
+    0 0 20px #00ff99;
+
+    opacity:0;
+}
+button{
+    padding:15px 30px;
+    border:none;
+    background:gold;
+    cursor:pointer;
+    border-radius:10px;
+    font-size:18px;
+}
+
+.hero{
+    position:relative;
+
+    min-height:100vh;
+
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px 20px;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.85)
+    ),
+    url("../img/theater-bg.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    overflow:hidden;
+}
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:min(500px,90vw);
+    height:min(500px,90vw);
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,215,0,.4),
+        transparent 70%
+    );
+
+    top:-150px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    animation: spotlight 6s ease-in-out infinite;
+}
+#musicToggle{
+    display:block;
+    margin:30px auto;
+    width:min(300px,90%);
+}
+
+
+@keyframes spotlight{
+
+    0%{
+        transform:translateX(-50%) scale(1);
+    }
+
+    50%{
+        transform:translateX(-50%) scale(1.2);
+    }
+
+    100%{
+        transform:translateX(-50%) scale(1);
+    }
+
+}
+
+.nayla-photo{
+
+    width:min(280px,70vw);
+    height:min(280px,70vw);
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid #FFD700;
+
+    box-shadow:
+    0 0 20px #FFD700,
+    0 0 40px #FFD700,
+    0 0 80px rgba(255,215,0,.6);
+
+    animation: floatPhoto 4s ease-in-out infinite;
+
+    z-index:2;
+}
+@keyframes floatPhoto{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+}
+.hero h1{
+
+    font-size: clamp(2rem, 8vw, 5rem);
+    letter-spacing:5px;
+
+    color:#FFD700;
+
+    text-shadow:
+    0 0 15px gold,
+    0 0 40px gold;
+
+    margin-bottom:10px;
+}
+
+.hero h2{
+
+    font-size: clamp(1.2rem, 5vw, 3rem);
+
+    color:white;
+
+    margin-top:0;
+}
+
+.card{
+    max-width:700px;
+    margin:auto;
+    background:#222;
+    padding:25px;
+    border-radius:15px;
+}
+
+.timeline{
+    width:100%;
+    padding:50px 20px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    text-align:center;
+}
+
+.year{
+    width:min(500px,100%);
+    margin:10px 0;
+
+    background:#8b0000;
+
+    padding:15px;
+
+    border-radius:10px;
+}
+
+.wish{
+    text-align:center;
+    padding:60px;
+}
+
+#wishText{
+    margin-top:20px;
+    font-size:30px;
+    color:gold;
+    display:none;
+}
+.time-box span{
+    animation: glow 2s infinite;
+}
+
+@keyframes glow{
+
+    0%{
+        text-shadow:0 0 10px gold;
+    }
+
+    50%{
+        text-shadow:
+            0 0 20px gold,
+            0 0 40px gold;
+    }
+
+    100%{
+        text-shadow:0 0 10px gold;
+    }
+}
+.countdown-section{
+
+    padding:120px 20px;
+
+    background:
+    linear-gradient(
+        rgba(10,10,10,.9),
+        rgba(20,20,20,.95)
+    );
+
+}
+
+.countdown-section h2{
+    color:#FFD700;
+    margin-bottom:30px;
+    font-size:2rem;
+}
+
+.countdown-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+}
+
+.time-box{
+
+    width:160px;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    backdrop-filter:blur(15px);
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.15);
+
+    transition:.4s;
+
+    box-shadow:
+    0 8px 30px rgba(0,0,0,.4);
+}
+.time-box:hover{
+
+    transform:
+    translateY(-10px)
+    scale(1.05);
+
+}
+.time-box span{
+
+    font-size:4rem;
+
+    font-weight:700;
+
+    color:#FFD700;
+
+    text-shadow:
+    0 0 20px gold,
+    0 0 40px gold;
+}
+
+.time-box p{
+
+    font-size:1rem;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    opacity:.8;
+}
+
+#birthdayMessage{
+
+    font-size:4rem;
+
+    margin-top:50px;
+
+    animation:
+    pulse 2s infinite;
+
+    text-shadow:
+    0 0 15px gold,
+    0 0 50px gold;
+}
+@keyframes pulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+}
+.countdown-section{
+    background-image:url("../img/theater-bg.jpg");
+    background-size:cover;
+    background-position:center;
+}
+.birthday-ticket{
+
+    display:inline-block;
+
+    padding:20px 40px;
+
+    border:2px dashed gold;
+
+    border-radius:20px;
+
+    margin-bottom:50px;
+
+    background:
+    rgba(139,0,0,.3);
+
+    backdrop-filter:blur(10px);
+}
+.stars{
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:
+    radial-gradient(white 1px, transparent 1px);
+
+    background-size:50px 50px;
+
+    opacity:.2;
+
+    pointer-events:none;
+}
+#wishBtn{
+
+    background:
+    linear-gradient(
+        45deg,
+        #FFD700,
+        #ffb700
+    );
+
+    color:black;
+
+    font-weight:bold;
+
+    border-radius:50px;
+
+    padding:18px 50px;
+
+    transition:.4s;
+}
+#wishBtn:hover{
+
+    transform:scale(1.1);
+
+    box-shadow:
+    0 0 20px gold,
+    0 0 50px gold;
+}
+#verifiedScreen{
+
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(20,20,20,.95),
+        rgba(0,0,0,1)
+    );
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.5s;
+
+    z-index:2000;
+}
+
+#verifiedScreen.show{
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+.verified-box{
+
+    text-align:center;
+
+    animation:popIn .6s ease;
+}
+
+.checkmark{
+
+    font-size:100px;
+
+    color:#00ff88;
+
+    text-shadow:
+    0 0 20px #00ff88,
+    0 0 40px #00ff88;
+
+    margin-bottom:20px;
+}
+
+.verified-box h2{
+
+    color:#00ff88;
+
+    font-size:2.5rem;
+
+    letter-spacing:4px;
+
+    margin-bottom:10px;
+}
+
+.verified-box p{
+
+    color:white;
+
+    font-size:1.2rem;
+
+    letter-spacing:3px;
+}
+
+.verified-box h1{
+
+    color:#FFD700;
+
+    font-size:3rem;
+
+    margin-top:10px;
+
+    text-shadow:
+    0 0 10px gold,
+    0 0 30px gold;
+}
+
+@keyframes popIn{
+
+    from{
+
+        transform:
+        scale(.7);
+
+        opacity:0;
+    }
+
+    to{
+
+        transform:
+        scale(1);
+
+        opacity:1;
+    }
+
+}
+.cake-container{
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+
+    margin-top:30px;
+}
+
+.cake{
+
+    font-size:120px;
+
+    margin-top:-10px;
+}
+.candle{
+
+    width:20px;
+    height:70px;
+
+    background:white;
+
+    border-radius:10px;
+
+    position:relative;
+
+    cursor:pointer;
+
+    z-index:2;
+}
+.flame{
+
+    width:18px;
+    height:28px;
+
+    background:orange;
+
+    position:absolute;
+
+    top:-25px;
+    left:1px;
+
+    border-radius:
+    50% 50% 50% 50%;
+
+    box-shadow:
+    0 0 10px orange,
+    0 0 20px gold,
+    0 0 40px gold;
+
+    animation:flicker .3s infinite alternate;
+}
+@keyframes flicker{
+
+    from{
+
+        transform:
+        scale(1)
+        rotate(-2deg);
+
+    }
+
+    to{
+
+        transform:
+        scale(1.1)
+        rotate(2deg);
+
+    }
+
+}
+.flame.out{
+
+    animation:none;
+
+    opacity:0;
+
+    transform:
+    translateY(-15px);
+
+    transition:.8s;
+}
+.dark-stage{
+
+    animation:dimStage 2s forwards;
+}
+
+@keyframes dimStage{
+
+    from{
+
+        filter:brightness(1);
+    }
+
+    to{
+
+        filter:brightness(.35);
+    }
+
+}
+#wishText{
+
+    display:none;
+
+    margin-top:40px;
+
+    font-size:3rem;
+
+    color:#FFD700;
+
+    text-align:center;
+
+    text-shadow:
+    0 0 20px gold,
+    0 0 40px gold;
+
+    animation:pulse 2s infinite;
+}
+.firework{
+
+    position:fixed;
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:9999;
+}
+.fan-wall{
+    padding:80px 20px;
+    text-align:center;
+}
+
+#fanForm{
+    max-width:600px;
+    margin:auto;
+}
+
+#fanForm input,
+#fanForm textarea{
+    width:100%;
+    padding:15px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+}
+
+#fanForm textarea{
+    height:120px;
+}
+
+
+.letter-card{
+    background:#222;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:15px;
+    text-align:left;
+    border-left:4px solid gold;
+}
+.visitor-section{
+    text-align:center;
+    padding:80px 20px;
+}
+
+.visitor-box{
+
+    display:inline-block;
+
+    padding:30px 50px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.15);
+}
+
+#visitorCount{
+
+    display:block;
+
+    font-size:4rem;
+
+    color:#FFD700;
+
+    font-weight:bold;
+
+    text-shadow:
+        0 0 10px gold,
+        0 0 30px gold;
+}
+.memory-gallery{
+
+    padding:100px 20px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+        rgba(15,15,15,.95),
+        rgba(25,25,25,.95)
+    );
+
+}
+
+.memory-gallery h2{
+
+    color:#FFD700;
+
+    font-size:2.5rem;
+
+    margin-bottom:50px;
+
+}
+
+.gallery-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+    max-width:1300px;
+
+    margin:auto;
+
+}
+
+.gallery-card{
+
+    background:#1d1d1d;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.4s;
+
+    cursor:pointer;
+
+    border:
+    1px solid rgba(255,255,255,.1);
+
+}
+
+.gallery-card:hover{
+
+    transform:
+    translateY(-10px)
+    scale(1.03);
+
+    box-shadow:
+    0 0 25px rgba(255,215,0,.4);
+
+}
+
+.gallery-card img{
+
+    width:100%;
+
+    height:350px;
+
+    object-fit:cover;
+
+}
+
+.gallery-info{
+
+    padding:20px;
+
+}
+
+.gallery-info h3{
+
+    color:#FFD700;
+
+    font-size:1.5rem;
+
+    margin-bottom:10px;
+
+}
+
+.gallery-info p{
+
+    color:white;
+
+    opacity:.8;
+
+}
+#lightbox{
+
+    position:fixed;
+    inset:0;
+
+    background:
+    rgba(0,0,0,.95);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:99999;
+
+}
+
+#lightbox img{
+
+    max-width:90%;
+    max-height:90%;
+
+    border-radius:15px;
+
+}
+
+#closeLightbox{
+
+    position:absolute;
+
+    top:20px;
+    right:30px;
+
+    font-size:50px;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+.card {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    line-height: 1.8;
+    font-size: 18px;
+    text-align: left;
+}
+
+.card strong {
+    font-size: 24px;
+}
+
+.card em {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+}
+/* MOBILE */
+@media screen and (max-width: 768px){
+
+    .hero{
+        padding: 40px 20px;
+        min-height: auto;
+    }
+
+    .nayla-photo{
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero h1{
+        font-size: 2.2rem;
+        line-height: 1.2;
+        letter-spacing: 2px;
+    }
+
+    .hero h2{
+        font-size: 1.5rem;
+    }
+
+.timeline{
+    padding:50px 20px;
+    text-align:center;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+    .year{
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .countdown-container{
+        gap: 10px;
+    }
+
+    .time-box{
+        width: 120px;
+        padding: 15px;
+    }
+
+    .time-box span{
+        font-size: 2rem;
+    }
+
+    #birthdayMessage{
+        font-size: 2rem;
+    }
+
+    .cake{
+        font-size: 80px;
+    }
+
+    #wishText{
+        font-size: 2rem;
+    }
+
+    .gallery-card img{
+        height: 250px;
+    }
+
+    button{
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .visitor-box{
+        width: 90%;
+        padding: 20px;
+    }
+
+    #visitorCount{
+        font-size: 2.5rem;
+    }
+
+}
+#mainContent{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+#lockStatus{
+    margin-bottom:20px;
+    color:#FFD700;
+    font-size:1.1rem;
+}
+
+.envelope{
+    font-size:100px;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.envelope.locked{
+    filter:grayscale(100%);
+    cursor:not-allowed;
+}
+
+.envelope.unlocked:hover{
+    transform:scale(1.1) rotate(-5deg);
+}
+.secret-letter-section{
+
+    padding:100px 20px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+        rgba(15,15,15,.95),
+        rgba(25,25,25,.95)
+    );
+}
+
+.secret-letter{
+
+    max-width:900px;
+
+    margin:40px auto;
+
+    padding:50px;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #fff8e7,
+        #fff2cc
+    );
+
+    color:#222;
+
+    text-align:left;
+
+    line-height:2;
+
+    font-size:18px;
+
+    display:none;
+
+    box-shadow:
+        0 0 30px rgba(255,215,0,.3);
+
+    border:2px solid #FFD700;
+}
+
+.secret-letter.show{
+    display:block;
+}
+
+.secret-letter h3{
+
+    color:#8b0000;
+
+    font-size:2rem;
+
+    margin-bottom:25px;
+}
+
+.signature{
+
+    margin-top:40px;
+
+    text-align:right;
+
+    color:#8b0000;
+
+    font-weight:bold;
+
+    font-size:1.2rem;
+}
+.secret-letter::before{
+
+    content:"Secret Letter";
+
+    display:block;
+
+    color:#b8860b;
+
+    font-size:14px;
+
+    letter-spacing:4px;
+
+    margin-bottom:15px;
+
+    text-transform:uppercase;
+}
+@keyframes shake {
+
+    0% { transform: translateX(0); }
+
+    25% { transform: translateX(-8px); }
+
+    50% { transform: translateX(8px); }
+
+    75% { transform: translateX(-8px); }
+
+    100% { transform: translateX(0); }
+
+}
+
+.shake {
+    animation: shake .4s;
+}
+.locked-popup{
+
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.85);
+
+    backdrop-filter:blur(8px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:999999;
+}
+
+.locked-popup.show{
+
+    opacity:1;
+    visibility:visible;
+}
+
+.locked-card{
+
+    width:90%;
+    max-width:450px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #1d1d1d,
+        #2d2d2d
+    );
+
+    border:2px solid gold;
+
+    border-radius:25px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:
+    0 0 30px rgba(255,215,0,.4);
+}
+
+.locked-icon{
+
+    font-size:70px;
+
+    margin-bottom:15px;
+
+    animation:pulseLock 2s infinite;
+}
+
+.locked-card h2{
+
+    color:#FFD700;
+
+    margin-bottom:15px;
+}
+
+.locked-card p{
+
+    color:white;
+
+    line-height:1.8;
+}
+
+.locked-card button{
+
+    margin-top:25px;
+
+    background:#FFD700;
+
+    color:black;
+
+    font-weight:bold;
+
+    width:180px;
+}
+
+@keyframes pulseLock{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+}
+.countdown-lock{
+
+    display:flex;
+    justify-content:center;
+    gap:10px;
+
+    margin-top:25px;
+    margin-bottom:20px;
+
+    flex-wrap:wrap;
+}
+
+.lock-box{
+
+    width:80px;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.15);
+}
+
+.lock-box span{
+
+    display:block;
+
+    font-size:1.8rem;
+
+    font-weight:bold;
+
+    color:#FFD700;
+}
+
+.lock-box small{
+
+    color:white;
+
+    opacity:.8;
+}
+
+@media(max-width:768px){
+
+    .lock-box{
+        width:65px;
+    }
+
+    .lock-box span{
+        font-size:1.3rem;
+    }
+
+}
+.music-player{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+    background:#181818;
+}
+
+.music-player h2{
+
+    color:#FFD700;
+
+    margin-bottom:20px;
+}
+
+.music-player select{
+
+    padding:12px;
+
+    border-radius:10px;
+
+    font-size:16px;
+}
+
+.music-player button{
+
+    margin:10px;
+}
+#birthdayEventOverlay{
+
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(0,0,0,.6),
+        rgba(0,0,0,.95)
+    );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.8s;
+
+    z-index:9999999;
+}
+
+#birthdayEventOverlay.show{
+
+    opacity:1;
+    visibility:visible;
+}
+
+.birthday-event-content{
+
+    text-align:center;
+
+    animation: birthdayZoom 1s ease;
+}
+
+.birthday-event-content h1{
+
+    font-size:4rem;
+
+    color:#FFD700;
+
+    text-shadow:
+    0 0 20px gold,
+    0 0 50px gold;
+}
+
+.birthday-event-content h2{
+
+    font-size:3rem;
+    color:white;
+}
+
+.birthday-event-content p{
+
+    margin-top:15px;
+
+    font-size:1.5rem;
+
+    color:#FFD700;
+}
+
+@keyframes birthdayZoom{
+
+    from{
+        transform:scale(.5);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.hero.birthday-mode{
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.4),
+        rgba(0,0,0,.6)
+    ),
+    url("../img/theater-bg.jpg");
+
+    background-size:cover;
+}
+@keyframes birthdayFlash{
+
+    0%{
+        filter:brightness(1);
+    }
+
+    50%{
+        filter:brightness(1.2);
+    }
+
+    100%{
+        filter:brightness(1);
+    }
+
+}
+#generatedMessage{
+
+    margin:30px auto;
+
+    max-width:800px;
+
+    background:#222;
+
+    border-left:4px solid gold;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    line-height:1.8;
+
+    white-space:pre-wrap;
+
+    display:none;
+}
+.hall-of-wishes{
+    padding:100px 20px;
+    text-align:center;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.85),
+        rgba(0,0,0,.95)
+    ),
+    url("../img/theater-bg.jpg");
+
+    background-size:cover;
+}
+
+.hall-of-wishes h2{
+    color:#FFD700;
+    margin-bottom:25px;
+    font-size:2.5rem;
+}
+
+.latest-wish{
+    color:#FFD700;
+    margin-bottom:30px;
+    animation:pulse 2s infinite;
+}
+
+#wishWall{
+    height:500px;
+    overflow:hidden;
+
+    border:2px solid gold;
+    border-radius:25px;
+
+    background:
+    rgba(0,0,0,.65);
+
+    backdrop-filter:blur(10px);
+
+    position:relative;
+}
+
+#wishScroller{
+    position:absolute;
+    width:100%;
+}
+
+.wish-card{
+
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+
+    margin:20px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.1);
+}
+
+.avatar{
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
+    font-size:22px;
+
+    color:white;
+}
+
+.wish-content{
+    text-align:left;
+}
+
+.wish-name{
+    font-weight:bold;
+    font-size:18px;
+}
+
+.wish-message{
+    opacity:.9;
+    margin-top:5px;
+}
+#wishScroller{
+    position:absolute;
+    width:100%;
+    animation: wishScroll 30s linear infinite;
+}
+
+@keyframes wishScroll{
+
+    from{
+        transform:translateY(100%);
+    }
+
+    to{
+        transform:translateY(-100%);
+    }
+
+}
+.ai-generator {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px;
+    background: rgba(15, 15, 20, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.3);
+}
+
+.ai-generator h2 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.form-row input {
+    flex: 2;
+}
+
+.form-row select {
+    flex: 1;
+}
+
+.form-row input,
+.form-row select {
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    padding: 0 15px;
+    font-size: 16px;
+    outline: none;
+}
+
+#generateMessage,
+#sendToFanWall {
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s ease;
+    margin-top: 12px;
+}
+
+#generateMessage {
+    background: #ffd600;
+    color: #000;
+}
+
+#sendToFanWall {
+    background: #ffcf00;
+    color: #000;
+}
+
+#generateMessage:hover,
+#sendToFanWall:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,214,0,.35);
+}
+
+#generatedMessage {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-row input,
+    .form-row select {
+        width: 100%;
+    }
+
+    .ai-generator h2 {
+        font-size: 1.5rem;
+    }
+
+    #generateMessage,
+    #sendToFanWall {
+        height: 55px;
+        font-size: 1rem;
+    }
+}
+/* =========================
+   FINAL SCENE
+========================= */
+
+.final-scene{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at center,
+    #1e3a8a,
+    #020617);
+
+    padding:50px 20px;
+}
+
+.final-content{
+    z-index:2;
+}
+
+.final-content h1{
+    font-size:4rem;
+    color:white;
+    margin-bottom:20px;
+    text-shadow:0 0 20px #fff;
+}
+
+.final-content h2{
+    color:#7dd3fc;
+    margin-bottom:30px;
+    font-size:2rem;
+}
+
+.final-content p{
+    color:white;
+    font-size:1.2rem;
+    line-height:1.8;
+}
+
+#typingText{
+    margin-top:40px;
+    font-size:1.8rem;
+    color:#facc15;
+    font-weight:bold;
+    min-height:50px;
+}
+
+/* =========================
+   MOVING STARS
+========================= */
+
+.final-stars{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+.final-stars::before,
+.final-stars::after{
+    content:"";
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+
+    box-shadow:
+    100px 100px white,
+    200px 50px white,
+    300px 200px white,
+    500px 100px white,
+    700px 300px white,
+    900px 150px white,
+    1100px 250px white,
+    1300px 100px white,
+    1500px 350px white;
+
+    animation:starMove 12s linear infinite;
+}
+
+.final-stars::after{
+    animation-duration:20s;
+    opacity:.5;
+}
+
+@keyframes starMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-300px);
+    }
+}

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#HappinessNaylalaland19</title>
+
+<link rel="stylesheet"href="{{ url_for('static', filename='css/style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="stars"></div>
+
+<div id="curtain">
+    <div class="curtain-left"></div>
+    <div class="curtain-right"></div>
+
+   <div class="ticket-container">
+
+    <div class="ticket">
+
+        <div class="ticket-top">
+            JKT48 THEATER
+        </div>
+
+        <div class="ticket-body">
+
+            <h2>SPECIAL BIRTHDAY SHOW</h2>
+
+            <h1>#HappinessNaylalaland19</h1>
+
+            <p>Guest : Naylaland</p>
+
+            <p>Seat : A01</p>
+
+            <p>18 June 2026</p>
+
+        </div>
+
+        <div class="ticket-bottom">
+            Admit One
+        </div>
+
+    </div>
+
+    <button id="scanBtn">
+        🎟 Scan Ticket
+    </button>
+   <audio id="scanSound">
+    <source src="{{ url_for('static', filename='audio/scan.mp3') }}">
+</audio>
+
+<div class="scanner" id="scanner"></div>
+
+<div id="verifiedScreen">
+    <div class="verified-box">
+
+        <div class="checkmark">✓</div>
+
+        <h2>TICKET VERIFIED</h2>
+
+        <p>WELCOME TO</p>
+
+        <h1>#HappinessNaylalaland19</h1>
+
+    </div>
+</div>
+
+        <h1>#HappinessNaylalaland19</h1>
+
+    </div>
+</div>
+
+
+<section id="mainContent">
+
+    <div class="hero">
+
+        <div class="spotlight"></div>
+
+        <img src="{{ url_for('static', filename='img/nayla.png') }}"
+        class="nayla-photo"  alt="Nayla">
+
+        <h1>HAPPY 19TH BIRTHDAY</h1>
+
+        <h2>NAYLA</h2>
+
+        <p>#HappinessNaylalaland19</p>
+
+    </div>
+
+    <section class="music-player">
+
+    <h2>🎵 Nayla Playlist</h2>
+
+<select id="songSelect">
+
+    <option value="{{ url_for('static', filename='audio/12seconds.mp3') }}">
+        12 Seconds
+    </option>
+
+    <option value="{{ url_for('static', filename='audio/pajamadrive.mp3') }}">
+        Pajama Drive
+    </option>
+
+    <option value="{{ url_for('static', filename='audio/cross.mp3') }}">
+        Cross
+    </option>
+
+    <option value="{{ url_for('static', filename='audio/kataomoinokaraage.mp3') }}">
+        Kataomoi no Karaage
+    </option>
+
+    <option value="{{ url_for('static', filename='audio/glorydays.mp3') }}">
+        Glory Days
+    </option>
+
+    <option value="{{ url_for('static', filename='audio/glassnoiloveyou.mp3') }}">
+        Glass no I Love You
+    </option>
+
+    <option value="{{ url_for('static', filename='audio/nagekinofigure.mp3') }}">
+        Nageki no Figure
+    </option>
+
+</select>
+
+    <br><br>
+
+    <button id="playMusic">
+        ▶ Play Music
+    </button>
+
+    <button id="pauseMusic">
+        ⏸ Pause
+    </button>
+
+</section>
+
+<audio id="bgMusic"></audio>
+
+    <section class="timeline">
+
+        <h2>Journey Stage</h2>
+
+        <div class="year">2023 — The First Step of a Beautiful Journey</div>
+        <div class="year">2024 — Shonichi as a Trainee in Theater</div>
+        <div class="year"> 2025 — A Year of Growth: Promoted to Core Member and Trusted as Translator at the Sister Reunion Festival Personal Meet n Greet</div>
+        <div class="year">2026 — Happy 19th Birthday, Nayla!</div>
+
+    </section>
+
+<section class="wish">
+
+    <h2>Birthday Cake</h2>
+
+    <div class="cake-container">
+
+        <div id="candle" class="candle">
+
+            <div id="flame" class="flame"></div>
+
+        </div>
+
+        <div class="cake">
+            🎂
+        </div>
+
+    </div>
+
+    <p class="blow-hint">
+        Click the candle to make a wish ✨
+    </p>
+
+    <div id="wishText">
+        🎂 One Candle, A Thousand Wishes 🎂
+        <br>
+        Happy 19th Birthday, Nayla 🩵🩷
+    </div>
+
+</section>
+
+</section>
+<section class="memory-gallery">
+
+    <h2>📸 Nayla Memory Gallery</h2>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='img/2023.jpg') }}" alt="2023">
+            <div class="gallery-info">
+                <h3>2023</h3>
+                <p>The First Step of a Beautiful Journey</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='img/2024.jpg') }}"alt="2024">
+            <div class="gallery-info">
+                <h3>2024</h3>
+                <p> Growing Through JKT48 School</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='img/2025.jpg') }}"alt="2025">
+            <div class="gallery-info">
+                <h3>2025</h3>
+                <p>
+                    Promoted to Core Member & Trusted
+                    Translator at Sister Reunion Festival
+                </p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='img/2026.jpg') }}" alt="2026">
+            <div class="gallery-info">
+                <h3>06-2026</h3>
+                <p>#HappinessNaylalaland19 🎂</p>
+            </div>
+        </div>
+
+    </div>
+<div id="lightbox">
+
+    <span id="closeLightbox">&times;</span>
+
+    <img id="lightboxImg">
+
+</div>
+</section>
+<section class="visitor-section">
+
+    <h2>🌍 Naylaland Visitors</h2>
+
+    <div class="visitor-box">
+
+        <span id="visitorCount">
+            Loading...
+        </span>
+
+        <p id="visitorLabel">
+            👥 Naylaland Visited
+        </p>
+
+    </div>
+
+</section>
+<section class="love-section">
+
+    <h2>❤️ Send Love To Nayla</h2>
+
+    <button id="loveBtn">
+        ❤️ Send Love
+    </button>
+    <h3 id="loveCount">Loading...</h3>
+</section>
+<section class="countdown-section">
+    <h2>🎂 Countdown Birthday Nayla 🎂</h2>
+
+    <div class="countdown-container">
+
+        <div class="time-box">
+            <span id="days">00</span>
+            <p>Hari</p>
+        </div>
+
+        <div class="time-box">
+            <span id="hours">00</span>
+            <p>Jam</p>
+        </div>
+
+        <div class="time-box">
+            <span id="minutes">00</span>
+            <p>Menit</p>
+        </div>
+
+        <div class="time-box">
+            <span id="seconds">00</span>
+            <p>Detik</p>
+        </div>
+
+    </div>
+
+    <div id="birthdayMessage"></div>
+    </section>
+    <audio id="birthdaySong">
+
+    <source
+    src="{{ url_for('static',
+    filename='audio/happybirthday.mp3') }}"
+    type="audio/mpeg">
+
+</audio>
+<section class="secret-letter-section">
+
+    <h2>🔐 Secret Letter From Developer - Voltre</h2>
+
+    <div id="lockStatus">
+        Letter Locked Until 18 June 2026 🎂
+    </div>
+
+    <div class="envelope locked" id="openLetter">
+        🔒
+    </div>
+
+    <div id="secretLetter" class="secret-letter">
+
+        <h3>To Nayla,</h3>
+
+        <div id="letterContent"></div>
+
+        <p class="signature">
+            — Voltre<br>
+            <small>Developer Website</small>
+        </p>
+
+    </div>
+<div id="lockedPopup" class="locked-popup">
+
+    <div class="locked-card">
+
+        <div class="locked-icon">🔒</div>
+
+        <h2>Secret Letter Locked</h2>
+
+        <p>
+            This letter will be available on
+            <strong>18 June 2026</strong> 🎂
+        </p>
+
+        <div class="countdown-lock">
+
+            <div class="lock-box">
+                <span id="lockDays">0</span>
+                <small>Days</small>
+            </div>
+
+            <div class="lock-box">
+                <span id="lockHours">0</span>
+                <small>Hours</small>
+            </div>
+
+            <div class="lock-box">
+                <span id="lockMinutes">0</span>
+                <small>Minutes</small>
+            </div>
+
+            <div class="lock-box">
+                <span id="lockSeconds">0</span>
+                <small>Seconds</small>
+            </div>
+
+        </div>
+
+        <button id="closePopup">
+            OK
+        </button>
+
+    </div>
+
+</div>
+</section>
+
+<section class="ai-generator">
+    <h2>🤖 AI Birthday Message Generator</h2>
+
+    <div class="form-row">
+        <input
+            type="text"
+            id="userName"
+            placeholder="Your Name"
+        >
+
+        <select id="relationship">
+            <option>Fan</option>
+            <option>Friend</option>
+            <option>Supporter</option>
+        </select>
+
+        <select id="mood">
+            <option>Happy</option>
+            <option>Proud</option>
+            <option>Thankful</option>
+            <option>Excited</option>
+        </select>
+    </div>
+
+    <button id="generateMessage">
+        ✨ Generate AI Message
+    </button>
+
+    <button id="sendToFanWall">
+        💌 Send To Fan Wall
+    </button>
+
+    <div id="generatedMessage"></div>
+</section>
+
+<section class="fan-wall">
+
+    <h2>💌 Fan Letter For Nayla</h2>
+
+    <form id="fanForm">
+
+        <input
+            type="text"
+            id="fanName"
+            placeholder="Nama"
+            required
+        >
+
+        <textarea
+            id="fanMessage"
+            placeholder="Tulis pesan untuk Nayla..."
+            required
+        ></textarea>
+
+        <button type="submit">
+            Send Letter 💌
+        </button>
+
+    </form>
+</section>
+
+<section class="hall-of-wishes">
+
+    <h2>✨ Hall of Wishes ✨</h2>
+
+    <div class="latest-wish">
+        💌 Latest Wish Just Arrived
+    </div>
+
+    <div id="wishWall">
+        <div id="wishScroller"></div>
+    </div>
+
+</section>
+
+<div id="birthdayEventOverlay">
+
+    <div class="birthday-event-content">
+
+        <h1>🎉 HAPPY 19TH BIRTHDAY 🎉</h1>
+
+        <h2>NAYLA</h2>
+
+        <p>#HappinessNaylalaland19</p>
+
+    </div>
+
+</div>
+<section id="finalScene" class="final-scene">
+
+    <div class="final-stars"></div>
+
+    <div class="final-content">
+
+        <h1>🎂 A New Chapter Begins</h1>
+
+        <h2>#HappinessNaylalaland19</h2>
+
+        <p>
+            Thank you for every smile,
+            every performance,
+            every memory.
+        </p>
+
+        <div id="typingText"></div>
+
+    </div>
+
+</section>
+<audio id="endingMusic" preload="auto">
+    <source
+        src="{{ url_for('static', filename='audio/A New Chapter Begins.mp3') }}"
+        type="audio/mpeg">
+</audio>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
