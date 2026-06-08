@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 import os
 
-# Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
@@ -17,6 +16,7 @@ model = genai.GenerativeModel(
     "gemini-2.5-flash"
 )
 
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -24,9 +24,7 @@ def home():
 
 @app.route("/generate-message", methods=["POST"])
 def generate_message():
-
     try:
-
         data = request.get_json()
 
         name = data.get("name", "Anonymous")
@@ -58,7 +56,6 @@ Ketentuan:
         })
 
     except Exception as e:
-
         print("Gemini Error:", e)
 
         return jsonify({
@@ -68,6 +65,4 @@ Ketentuan:
 
 
 if __name__ == "__main__":
-    app.run()
-
-app = app
+    app.run(debug=True)
