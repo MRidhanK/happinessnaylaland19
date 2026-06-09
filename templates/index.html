@@ -9,6 +9,11 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+    <header class="top-header">
+    <button id="muteAllBtn">
+        🔊 Music ON
+    </button>
+</header>
     <div class="stars"></div>
 
 <div id="curtain">
@@ -25,19 +30,19 @@
 
         <div class="ticket-body">
 
-            <h2>SPECIAL BIRTHDAY SHOW</h2>
+            <h2 id="ticketTitle">SPECIAL BIRTHDAY SHOW</h2>
 
-            <h1>#HappinessNaylalaland19</h1>
+            <h1 id="ticketGuest">#HappinessNaylalaland19</h1>
 
-            <p>Guest : Naylaland</p>
+            <p id="guest">Guest : Naylaland</p>
 
-            <p>Seat : A01</p>
+            <p id="ticketSeat">Seat : A01</p>
 
-            <p>18 June 2026</p>
+            <p id="ticketdate">18 June 2026</p>
 
         </div>
 
-        <div class="ticket-bottom">
+        <div class="ticket-bottom" id="ticketBottom">
             Admit One
         </div>
 
@@ -46,6 +51,7 @@
     <button id="scanBtn">
         🎟 Scan Ticket
     </button>
+
    <audio id="scanSound">
     <source src="{{ url_for('static', filename='audio/scan.mp3') }}">
 </audio>
@@ -81,11 +87,11 @@
         <img src="{{ url_for('static', filename='img/nayla.png') }}"
         class="nayla-photo"  alt="Nayla">
 
-        <h1>HAPPY 19TH BIRTHDAY</h1>
+        <h1 data-i18n="Ucapan">HAPPY 19TH BIRTHDAY</h1>
 
-        <h2>NAYLA</h2>
+        <h2 class="Nama">NAYLA</h2>
 
-        <p>#HappinessNaylalaland19</p>
+        <p class="Hastag">#HappinessNaylalaland19</p>
 
     </div>
 
@@ -143,10 +149,10 @@
 
         <h2>Journey Stage</h2>
 
-        <div class="year">2023 — The First Step of a Beautiful Journey</div>
-        <div class="year">2024 — Shonichi as a Trainee in Theater</div>
-        <div class="year"> 2025 — A Year of Growth: Promoted to Core Member and Trusted as Translator at the Sister Reunion Festival Personal Meet n Greet</div>
-        <div class="year">2026 — Happy 19th Birthday, Nayla!</div>
+        <div class="year" id="timeline2023">2023 — The First Step of a Beautiful Journey</div>
+        <div class="year" id="timeline2024">2024 — Shonichi as a Trainee in Theater</div>
+        <div class="year" id="timeline2025"> 2025 — A Year of Growth: Promoted to Core Member and Trusted as Translator at the Sister Reunion Festival Personal Meet n Greet</div>
+        <div class="year" id="timeline2026">2026 — Happy 19th Birthday, Nayla!</div>
 
     </section>
 
@@ -191,7 +197,7 @@
             <img src="{{ url_for('static', filename='img/2023.jpg') }}" alt="2023">
             <div class="gallery-info">
                 <h3>2023</h3>
-                <p>The First Step of a Beautiful Journey</p>
+                <p id="gallery2023">The First Step of a Beautiful Journey</p>
             </div>
         </div>
 
@@ -199,7 +205,7 @@
             <img src="{{ url_for('static', filename='img/2024.jpg') }}"alt="2024">
             <div class="gallery-info">
                 <h3>2024</h3>
-                <p> Growing Through JKT48 School</p>
+                <p id="gallery2024"> Growing Through JKT48 School</p>
             </div>
         </div>
 
@@ -207,7 +213,7 @@
             <img src="{{ url_for('static', filename='img/2025.jpg') }}"alt="2025">
             <div class="gallery-info">
                 <h3>2025</h3>
-                <p>
+                <p id="gallery2025">
                     Promoted to Core Member & Trusted
                     Translator at Sister Reunion Festival
                 </p>
@@ -218,7 +224,7 @@
             <img src="{{ url_for('static', filename='img/2026.jpg') }}" alt="2026">
             <div class="gallery-info">
                 <h3>06-2026</h3>
-                <p>#HappinessNaylalaland19 🎂</p>
+                <p id="gallery2026">#HappinessNaylalaland19 🎂</p>
             </div>
         </div>
 
@@ -248,7 +254,33 @@
     </div>
 
 </section>
-<section class="love-section">
+<section class="countdown-section">
+    <h2>🎂 Countdown Birthday Nayla 🎂</h2>
+
+    <div class="countdown-container">
+
+        <div class="time-box">
+            <span id="days">00</span>
+            <p id="dayLabel">Hari</p>
+        </div>
+
+        <div class="time-box">
+            <span id="hours">00</span>
+            <p id="hourLabel">Jam</p>
+        </div>
+
+        <div class="time-box">
+            <span id="minutes">00</span>
+            <p id="minuteLabel">Menit</p>
+        </div>
+
+        <div class="time-box">
+            <span id="seconds">00</span>
+            <p id="secondLabel">Detik</p>
+        </div>
+
+    </div>
+    <section class="love-section">
 
     <h2>❤️ Send Love To Nayla</h2>
 
@@ -257,32 +289,6 @@
     </button>
     <h3 id="loveCount">Loading...</h3>
 </section>
-<section class="countdown-section">
-    <h2>🎂 Countdown Birthday Nayla 🎂</h2>
-
-    <div class="countdown-container">
-
-        <div class="time-box">
-            <span id="days">00</span>
-            <p>Hari</p>
-        </div>
-
-        <div class="time-box">
-            <span id="hours">00</span>
-            <p>Jam</p>
-        </div>
-
-        <div class="time-box">
-            <span id="minutes">00</span>
-            <p>Menit</p>
-        </div>
-
-        <div class="time-box">
-            <span id="seconds">00</span>
-            <p>Detik</p>
-        </div>
-
-    </div>
 
     <div id="birthdayMessage"></div>
     </section>
@@ -324,9 +330,9 @@
 
         <div class="locked-icon">🔒</div>
 
-        <h2>Secret Letter Locked</h2>
+        <h2 id="lockedTitle">Secret Letter Locked</h2>
 
-        <p>
+        <p id="lockedDesc">
             This letter will be available on
             <strong>18 June 2026</strong> 🎂
         </p>
@@ -381,10 +387,10 @@
         </select>
 
         <select id="mood">
-            <option>Happy</option>
-            <option>Proud</option>
-            <option>Thankful</option>
-            <option>Excited</option>
+            <option id="moodHappy">Happy</option>
+            <option id="moodProud">Proud</option>
+            <option id="moodThankful">Thankful</option>
+            <option id="moodExcited">Excited</option>
         </select>
     </div>
 
@@ -445,9 +451,11 @@
 
         <h1>🎉 HAPPY 19TH BIRTHDAY 🎉</h1>
 
-        <h2>NAYLA</h2>
+        <h2 id="heroName">NAYLA</h2>
 
-        <p>#HappinessNaylalaland19</p>
+        <p id="heroHashtag">
+            #HappinessNaylalaland19
+        </p>
 
     </div>
 
@@ -478,6 +486,34 @@
         src="{{ url_for('static', filename='audio/A_New_Chapter_Begins.mp3') }}"
         type="audio/mpeg">
 </audio>
+
+<footer class="footer-language">
+
+    <div class="language-dropdown">
+
+        <button id="languageToggle">
+            🌐 Language ▼
+        </button>
+
+        <div class="language-menu">
+
+            <button class="lang-btn" data-lang="id">
+                🇮🇩 Indonesia
+            </button>
+
+            <button class="lang-btn" data-lang="en">
+                🇬🇧 English
+            </button>
+
+            <button class="lang-btn" data-lang="jp">
+                🇯🇵 日本語
+            </button>
+
+        </div>
+
+    </div>
+
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 window.va = window.va || function () {

@@ -1356,3 +1356,442 @@ function playExclusive(audio) {
     });
 
 }
+const muteBtn = document.getElementById("muteAllBtn");
+
+let muted = false;
+
+muteBtn.addEventListener("click", () => {
+
+    const audios = document.querySelectorAll("audio");
+
+    muted = !muted;
+
+    audios.forEach(audio => {
+        audio.muted = muted;
+    });
+
+    muteBtn.textContent = muted
+        ? "🔇 Music OFF"
+        : "🔊 Music ON";
+});
+const LANG = {
+    en: {
+
+        gallery2023:"The First Step of a Beautiful Journey",
+        gallery2024:"Growing Through JKT48 School",
+        gallery2025:"Promoted to Core Member & Trusted Translator at Sister Reunion Festiva",
+        gallery2026:"#HappinessNaylalaland19 🎂",
+
+        timeline2023:
+        "2023 — The First Step of a Beautiful Journey",
+
+        timeline2024:
+        "2024 — Shonichi as a Trainee in Theater",
+
+        timeline2025:
+        "2025 — A Year of Growth: Promoted to Core Member and Trusted as Translator at Sister Reunion Festival Personal Meet n Greet",
+
+        timeline2026:
+        "2026 — Happy 19th Birthday, Nayla!",
+                
+        ticketTitle: "SPECIAL BIRTHDAY SHOW",
+        ticketGuest: "Guest : Naylaland",
+        ticketSeat: "Seat : A01",
+        ticketBottom: "Admit One",
+        ticketDate: "18 June 2026",
+        Nama: 'NAYLA',
+        Hastag: '#HappinessNaylalaland19',
+
+        scanBtn: "🎟 Scan Ticket",
+        verifiedTitle: "TICKET VERIFIED",
+        verifiedWelcome: "WELCOME TO",
+
+        heroTitle: "HAPPY 19TH BIRTHDAY",
+
+        playlistTitle: "🎵 Nayla Playlist",
+        playMusic: "▶ Play Music",
+        pauseMusic: "⏸ Pause",
+
+        timelineTitle: "Journey Stage",
+
+        cakeTitle: "Birthday Cake",
+        cakeHint: "Click the candle to make a wish ✨",
+
+        galleryTitle: "📸 Nayla Memory Gallery",
+
+        visitorTitle: "🌍 Naylaland Visitors",
+        visitorLabel: "👥 Naylaland Visited",
+
+        countdownTitle: "🎂 Countdown Birthday Nayla 🎂",
+
+        loveTitle: "❤️ Send Love To Nayla",
+        loveBtn: "❤️ Send Love",
+
+        secretTitle: "🔐 Secret Letter From Developer - Voltre",
+        lockStatus: "Letter Locked Until 18 June 2026 🎂",
+        closeBtn: "OK",
+
+        aiTitle: "🤖 AI Birthday Message Generator",
+        yourName: "Your Name",
+
+        generateBtn: "✨ Generate AI Message",
+        sendToFanWall: "💌 Send To Fan Wall",
+
+        fanWallTitle: "💌 Fan Letter For Nayla",
+        fanName: "Name",
+        fanMessage: "Write a message for Nayla...",
+        sendLetter: "Send Letter 💌",
+
+        hallTitle: "✨ Hall of Wishes ✨",
+        latestWish: "💌 Latest Wish Just Arrived",
+
+        finalTitle: "🎂 A New Chapter Begins",
+        finalText:
+            "Thank you for every smile, every performance, every memory.",
+
+        muteOn: "🔊 Music ON",
+        muteOff: "🔇 Music OFF",
+
+        day: "Days",
+        hour: "Hours",
+        minute: "Minutes",
+        second: "Seconds",
+
+        lockedTitle: "Secret Letter Locked",
+        lockedDesc: "This letter will be available on 18 June 2026 🎂",
+        
+        fanOption: "Fan",
+        friendOption: "Friend",
+        supporterOption: "Supporter",
+    },
+
+    id: {
+
+        gallery2023: "Langkah Pertama dari Sebuah Perjalanan Indah",
+
+        gallery2024: "Bertumbuh Bersama JKT48 School",
+
+        gallery2025: "Dipromosikan Menjadi Core Member & Dipercaya Sebagai Penerjemah di Sister Reunion Festival",
+
+        gallery2026: "#HappinessNaylalaland19 🎂",
+        
+        timeline2023:
+        "2023 — Langkah Pertama dari Sebuah Perjalanan Indah",
+
+        timeline2024:
+        "2024 — Shonichi sebagai Trainee di Teater",
+
+        timeline2025:
+        "2025 — Tahun Penuh Pertumbuhan: Dipromosikan menjadi Core Member dan Dipercaya sebagai Penerjemah di Sister Reunion Festival Personal Meet & Greet",
+
+        timeline2026:
+        "2026 — Selamat Ulang Tahun ke-19, Nayla!",
+
+        day: "Hari",
+        hour: "Jam",
+        minute: "Menit",
+        second: "Detik",
+
+        lockedTitle: "Surat Rahasia Terkunci",
+
+        lockedDesc:
+        "Surat ini akan tersedia pada 18 Juni 2026 🎂",
+
+        fanOption: "Fans",
+        friendOption: "Teman",
+        supporterOption: "Pendukung",
+
+        ticketTitle: "PERTUNJUKAN ULANG TAHUN SPESIAL",
+        ticketGuest: "Tamu : Naylaland",
+        ticketSeat: "Kursi : A01",
+        ticketBottom: "Satu Tiket Masuk",
+        ticketDate: "18 Juni 2026",
+        Nama: 'NAYLA',
+        Hastag: '#HappinessNaylalaland19',
+
+        scanBtn: "🎟 Scan Tiket",
+        verifiedTitle: "TIKET TERVERIFIKASI",
+        verifiedWelcome: "SELAMAT DATANG DI",
+
+        heroTitle: "SELAMAT ULANG TAHUN KE-19",
+
+        playlistTitle: "🎵 Playlist Nayla",
+        playMusic: "▶ Putar Musik",
+        pauseMusic: "⏸ Jeda",
+
+        timelineTitle: "Perjalanan Nayla",
+
+        cakeTitle: "Kue Ulang Tahun",
+        cakeHint: "Klik lilin untuk membuat harapan ✨",
+
+        galleryTitle: "📸 Galeri Kenangan Nayla",
+
+        visitorTitle: "🌍 Pengunjung Naylaland",
+        visitorLabel: "👥 Sudah Berkunjung",
+
+        countdownTitle: "🎂 Hitung Mundur Ulang Tahun Nayla 🎂",
+
+        loveTitle: "❤️ Kirim Cinta Untuk Nayla",
+        loveBtn: "❤️ Kirim Cinta",
+
+        secretTitle: "🔐 Surat Rahasia Dari Developer - Voltre",
+        lockStatus: "Surat Terkunci Hingga 18 Juni 2026 🎂",
+        closeBtn: "Tutup",
+
+        aiTitle: "🤖 Generator Ucapan AI",
+        yourName: "Nama Kamu",
+
+        generateBtn: "✨ Buat Ucapan AI",
+        sendToFanWall: "💌 Kirim Ke Fan Wall",
+
+        fanWallTitle: "💌 Surat Untuk Nayla",
+        fanName: "Nama",
+        fanMessage: "Tulis pesan untuk Nayla...",
+        sendLetter: "Kirim Surat 💌",
+
+        hallTitle: "✨ Aula Harapan ✨",
+        latestWish: "💌 Harapan Terbaru Baru Saja Datang",
+
+        finalTitle: "🎂 Babak Baru Dimulai",
+        finalText:
+            "Terima kasih untuk setiap senyuman, penampilan, dan kenangan.",
+
+        muteOn: "🔊 Musik ON",
+        muteOff: "🔇 Musik OFF"
+    },
+
+    jp: {
+
+        gallery2023: "美しい旅の第一歩",
+
+        gallery2024: "JKT48 Schoolとともに成長",
+
+        gallery2025: "正規メンバーへ昇格し、シスターグループ再会フェスティバルで通訳として活躍",
+
+        gallery2026: "#HappinessNaylalaland19 🎂",
+
+        timeline2023:
+        "2023 — 美しい旅の第一歩",
+
+        timeline2024:
+        "2024 — 研究生として劇場デビュー（初日）",
+
+        timeline2025:
+        "2025 — 成長の一年：正規メンバーへ昇格し、シスターグループ再会フェスティバル個別ミート＆グリートで通訳を担当",
+
+        timeline2026:
+        "2026 — ナイラ、19歳のお誕生日おめでとう！",
+
+        day: "日",
+        hour: "時間",
+        minute: "分",
+        second: "秒",
+
+        lockedTitle: "秘密の手紙はロックされています",
+
+        lockedDesc:
+        "この手紙は2026年6月18日に公開されます 🎂",
+
+        fanOption: "ファン",
+        friendOption: "友達",
+        supporterOption: "サポーター",
+        ticketTitle: "特別バースデー公演",
+        ticketGuest: "ゲスト : Naylaland",
+        ticketSeat: "座席 : A01",
+        ticketBottom: "入場券",
+        ticketDate: "2026年6月18日",
+        Nama: 'ナイラ',
+        Hastag: '#HappinessNaylalaland19',
+
+        scanBtn: "🎟 チケットをスキャン",
+        verifiedTitle: "チケット認証完了",
+        verifiedWelcome: "ようこそ",
+
+        heroTitle: "19歳のお誕生日おめでとう",
+
+        playlistTitle: "🎵 ナイラプレイリスト",
+        playMusic: "▶ 音楽を再生",
+        pauseMusic: "⏸ 一時停止",
+
+        timelineTitle: "ナイラの歩み",
+
+        cakeTitle: "誕生日ケーキ",
+        cakeHint: "ろうそくをクリックして願い事をしよう ✨",
+
+        galleryTitle: "📸 ナイラ思い出ギャラリー",
+
+        visitorTitle: "🌍 ナイランド来場者",
+        visitorLabel: "👥 訪問者",
+
+        countdownTitle: "🎂 ナイラ誕生日カウントダウン 🎂",
+
+        loveTitle: "❤️ ナイラへ愛を送ろう",
+        loveBtn: "❤️ 愛を送る",
+
+        secretTitle: "🔐 開発者からの秘密の手紙",
+        lockStatus: "2026年6月18日までロックされています 🎂",
+        closeBtn: "閉じる",
+
+        aiTitle: "🤖 AI誕生日メッセージ生成",
+        yourName: "あなたの名前",
+
+        generateBtn: "✨ AIメッセージ生成",
+        sendToFanWall: "💌 ファンウォールへ送信",
+
+        fanWallTitle: "💌 ナイラへの手紙",
+        fanName: "名前",
+        fanMessage: "ナイラへのメッセージを書いてください",
+        sendLetter: "手紙を送る 💌",
+
+        hallTitle: "✨ 願いのホール ✨",
+        latestWish: "💌 新しい願いが届きました",
+
+        finalTitle: "🎂 新しい章の始まり",
+        finalText:
+            "たくさんの笑顔、パフォーマンス、思い出をありがとう。",
+
+        muteOn: "🔊 音楽 ON",
+        muteOff: "🔇 音楽 OFF"
+    }
+};
+
+function changeLanguage(lang) {
+    const t = LANG[lang];
+
+    const setText = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+    };
+
+    const setQuery = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.textContent = value;
+    };
+
+    setText("timeline2023", t.timeline2023);
+    setText("timeline2024", t.timeline2024);
+    setText("timeline2025", t.timeline2025);
+    setText("timeline2026", t.timeline2026);
+
+    setText("gallery2023", t.gallery2023);
+    setText("gallery2024", t.gallery2024);
+    setText("gallery2025", t.gallery2025);
+    setText("gallery2026", t.gallery2026);
+
+    setText("dayLabel", t.day);
+    setText("hourLabel", t.hour);
+    setText("minuteLabel", t.minute);
+    setText("secondLabel", t.second);
+
+    setText("lockedTitle", t.lockedTitle);
+    setText("lockedDesc", t.lockedDesc);
+
+    setText("optFan", t.fanOption);
+    setText("optFriend", t.friendOption);
+    setText("optSupporter", t.supporterOption);
+
+    setText("moodHappy", t.moodHappy);
+    setText("moodProud", t.moodProud);
+    setText("moodThankful", t.moodThankful);
+    setText("moodExcited", t.moodExcited);
+
+    setText("ticketTitle", t.ticketTitle);
+    setText("ticketGuest", t.ticketGuest);
+    setText("ticketSeat", t.ticketSeat);
+    setText("ticketDate", t.ticketDate);
+    setText("ticketBottom", t.ticketBottom);
+    setText("heroName", t.Nama);
+    setText("heroHashtag", t.Hastag);
+
+    setText("scanBtn", t.scanBtn);
+    setText("verifiedTitle", t.verifiedTitle);
+    setText("verifiedWelcome", t.verifiedWelcome);
+
+    setText("visitorLabel", t.visitorLabel);
+    setText("lockStatus", t.lockStatus);
+    setText("closePopup", t.closeBtn);
+
+    setQuery(".hero h1", t.heroTitle);
+
+    setQuery(".music-player h2", t.playlistTitle);
+    setText("playMusic", t.playMusic);
+    setText("pauseMusic", t.pauseMusic);
+
+    setQuery(".timeline h2", t.timelineTitle);
+
+    setQuery(".wish h2", t.cakeTitle);
+    setQuery(".blow-hint", t.cakeHint);
+
+    setQuery(".memory-gallery h2", t.galleryTitle);
+
+    setQuery(".visitor-section h2", t.visitorTitle);
+
+    setQuery(".countdown-section h2", t.countdownTitle);
+
+    setQuery(".love-section h2", t.loveTitle);
+    setText("loveBtn", t.loveBtn);
+
+    setQuery(".secret-letter-section h2", t.secretTitle);
+
+    setQuery(".ai-generator h2", t.aiTitle);
+
+    setText("generateMessage", t.generateBtn);
+    setText("sendToFanWall", t.sendToFanWall);
+
+    setQuery(".fan-wall h2", t.fanWallTitle);
+
+    const fanName = document.getElementById("fanName");
+    if (fanName) fanName.placeholder = t.fanName;
+
+    const fanMessage = document.getElementById("fanMessage");
+    if (fanMessage) fanMessage.placeholder = t.fanMessage;
+
+    const userName = document.getElementById("userName");
+    if (userName) userName.placeholder = t.yourName;
+
+    const fanBtn = document.querySelector("#fanForm button");
+    if (fanBtn) fanBtn.textContent = t.sendLetter;
+
+    setQuery(".hall-of-wishes h2", t.hallTitle);
+    setQuery(".latest-wish", t.latestWish);
+
+    setQuery("#finalScene h1", t.finalTitle);
+    setQuery("#finalScene p", t.finalText);
+
+    localStorage.setItem("language", lang);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            changeLanguage(btn.dataset.lang);
+        });
+    });
+    const languageToggle =
+document.getElementById("languageToggle");
+
+const languageMenu =
+document.querySelector(".language-menu");
+
+languageToggle.addEventListener("click", () => {
+    languageMenu.classList.toggle("show");
+});
+
+document.querySelectorAll(".lang-btn")
+.forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+        changeLanguage(btn.dataset.lang);
+
+        languageMenu.classList.remove("show");
+
+    });
+
+});
+
+    changeLanguage(
+        localStorage.getItem("language") || "en"
+    );
+});
