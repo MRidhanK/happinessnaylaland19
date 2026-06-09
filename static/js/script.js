@@ -1395,7 +1395,7 @@ const LANG = {
         "2026 — Happy 19th Birthday, Nayla!",
                 
         ticketTitle: "SPECIAL BIRTHDAY SHOW",
-        ticketGuest: "Guest : Naylaland",
+        ticketGuest: "Guest : Nayla Suji",
         ticketSeat: "Seat : A01",
         ticketBottom: "Admit One",
         ticketDate: "18 June 2026",
@@ -1502,7 +1502,7 @@ const LANG = {
         supporterOption: "Pendukung",
 
         ticketTitle: "PERTUNJUKAN ULANG TAHUN SPESIAL",
-        ticketGuest: "Tamu : Naylaland",
+        ticketGuest: "Tamu : Nayla Suji",
         ticketSeat: "Kursi : A01",
         ticketBottom: "Satu Tiket Masuk",
         ticketDate: "18 Juni 2026",
@@ -1595,7 +1595,7 @@ const LANG = {
         friendOption: "友達",
         supporterOption: "サポーター",
         ticketTitle: "特別バースデー公演",
-        ticketGuest: "ゲスト : Naylaland",
+        ticketGuest: "ゲスト : ナイラ・スジ",
         ticketSeat: "座席 : A01",
         ticketBottom: "入場券",
         ticketDate: "2026年6月18日",
@@ -1794,3 +1794,30 @@ document.querySelectorAll(".lang-btn")
         localStorage.getItem("language") || "en"
     );
 });
+async function loadPollData(){
+
+    const { data, error } =
+    await supabaseClient
+        .from('nayla_poll')
+        .select('reason');
+
+    if(error) return;
+
+    const counts = {
+        "Smile":0,
+        "Performance":0,
+        "Personality":0,
+        "Japanese Skill":0,
+        "Hard Work":0
+    };
+
+    data.forEach(item => {
+
+        if(counts[item.reason] !== undefined){
+            counts[item.reason]++;
+        }
+
+    });
+
+    updateChart(counts);
+}
