@@ -1399,7 +1399,7 @@ const LANG = {
         ticketSeat: "Seat : A01",
         ticketBottom: "Admit One",
         ticketDate: "18 June 2026",
-        Nama: 'NAYLA',
+        Name: 'NAYLA',
         Hastag: '#HappinessNaylalaland19',
 
         scanBtn: "🎟 Scan Ticket",
@@ -1486,7 +1486,7 @@ const LANG = {
 
         timeline2026:
         "2026 — Selamat Ulang Tahun ke-19, Nayla!",
-
+        Name: 'NAYLA',
         day: "Hari",
         hour: "Jam",
         minute: "Menit",
@@ -1506,7 +1506,7 @@ const LANG = {
         ticketSeat: "Kursi : A01",
         ticketBottom: "Satu Tiket Masuk",
         ticketDate: "18 Juni 2026",
-        Nama: 'NAYLA',
+        Name: 'NAYLA',
         Hastag: '#HappinessNaylalaland19',
 
         scanBtn: "🎟 Scan Tiket",
@@ -1569,7 +1569,6 @@ const LANG = {
         gallery2025: "正規メンバーへ昇格し、シスターグループ再会フェスティバルで通訳として活躍",
 
         gallery2026: "#HappinessNaylalaland19 🎂",
-
         timeline2023:
         "2023 — 美しい旅の第一歩",
 
@@ -1600,7 +1599,7 @@ const LANG = {
         ticketSeat: "座席 : A01",
         ticketBottom: "入場券",
         ticketDate: "2026年6月18日",
-        Nama: 'ナイラ',
+        Name: 'ナイラ',
         Hastag: '#HappinessNaylalaland19',
 
         scanBtn: "🎟 チケットをスキャン",
@@ -1700,7 +1699,7 @@ function changeLanguage(lang) {
     setText("ticketSeat", t.ticketSeat);
     setText("ticketDate", t.ticketDate);
     setText("ticketBottom", t.ticketBottom);
-    setText("heroName", t.Nama);
+    setText("heroName", t.Name);
     setText("heroHashtag", t.Hastag);
 
     setText("scanBtn", t.scanBtn);
