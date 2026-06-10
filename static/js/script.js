@@ -1821,3 +1821,109 @@ async function loadPollData(){
 
     updateChart(counts);
 }
+function launchBirthdayEvent(){
+
+    const overlay =
+    document.getElementById("midnightUnlock");
+
+    overlay.style.display = "flex";
+
+    document.body.classList.add("birthday-mode");
+
+    // play birthday song
+    const song =
+    document.getElementById("birthdaySong");
+
+    song.volume = 1;
+    song.play().catch(()=>{});
+
+    // confetti fullscreen
+    const duration = 15000;
+    const end = Date.now() + duration;
+
+    const interval = setInterval(()=>{
+
+        confetti({
+            particleCount:8,
+            angle:60,
+            spread:100,
+            origin:{x:0}
+        });
+
+        confetti({
+            particleCount:8,
+            angle:120,
+            spread:100,
+            origin:{x:1}
+        });
+
+        if(Date.now() > end){
+            clearInterval(interval);
+        }
+
+    },250);
+
+    // ubah countdown
+    const countdown =
+    document.getElementById("birthdayMessage");
+
+    countdown.innerHTML = `
+        <div class="birthday-title">
+            🎂 HAPPY BIRTHDAY NAYLA 🎂
+        </div>
+        `;
+
+}
+function checkBirthdayUnlock(){
+
+    const now = new Date();
+
+    const unlockDate =
+    new Date("2026-06-18T00:00:00+07:00");
+
+    if(now >= unlockDate){
+
+        if(
+            !localStorage.getItem(
+            "birthdayUnlocked")
+        ){
+
+            launchBirthdayEvent();
+
+            localStorage.setItem(
+                "birthdayUnlocked",
+                "true"
+            );
+
+        }
+
+    }
+
+}
+
+setInterval(
+    checkBirthdayUnlock,
+    1000
+);
+
+checkBirthdayUnlock();
+document
+.getElementById("closeUnlock")
+?.addEventListener("click",()=>{
+
+    document.getElementById(
+        "midnightUnlock"
+    ).style.display = "none";
+
+});
+document.getElementById(
+    "heroName"
+).innerHTML =
+"🎂 NAYLA 🎂";
+
+document.getElementById(
+    "heroHashtag"
+).innerHTML =
+"#HappyBirthdayNayla19";
+document.body.style.animation =
+"rainbowBackground 8s infinite";
