@@ -1546,92 +1546,110 @@ button{
 }
 
 #wishWall{
-    height:500px;
-    overflow:hidden;
+    max-height:500px;
+    overflow-y:auto;
+    overflow-x:hidden;
 
-    border:2px solid gold;
+    border:2px solid #FFD700;
     border-radius:25px;
 
-    background:
-    rgba(0,0,0,.65);
-
+    background:rgba(0,0,0,.65);
     backdrop-filter:blur(10px);
 
-    position:relative;
+    padding:20px;
+}
+
+/* scrollbar */
+#wishWall::-webkit-scrollbar{
+    width:8px;
+}
+
+#wishWall::-webkit-scrollbar-track{
+    background:rgba(255,255,255,.05);
+    border-radius:20px;
+}
+
+#wishWall::-webkit-scrollbar-thumb{
+    background:#FFD700;
+    border-radius:20px;
 }
 
 #wishScroller{
-    position:absolute;
-    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
 }
 
 .wish-card{
-
     display:flex;
-    align-items:center;
+    align-items:flex-start;
 
-    gap:15px;
-
-    margin:20px;
+    gap:16px;
 
     padding:20px;
 
-    border-radius:20px;
-
     background:
-    rgba(255,255,255,.05);
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.03)
+    );
 
-    border:
-    1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(255,215,0,.2);
+
+    border-radius:18px;
+
+    transition:.3s;
+}
+
+.wish-card:hover{
+    transform:translateY(-3px);
+
+    border-color:#FFD700;
+
+    box-shadow:
+    0 0 20px rgba(255,215,0,.15);
 }
 
 .avatar{
-
+    min-width:60px;
     width:60px;
     height:60px;
 
     border-radius:50%;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    background:
+    linear-gradient(
+        135deg,
+        #FFD700,
+        #FFB700
+    );
 
-    font-weight:bold;
+    color:#000;
+
     font-size:22px;
+    font-weight:bold;
 
-    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.wish-name{
+    color:#FFD700;
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:6px;
 }
 
+.wish-message{
+    color:#f1f1f1;
+    line-height:1.6;
+    font-size:15px;
+}
 .wish-content{
     text-align:left;
 }
 
-.wish-name{
-    font-weight:bold;
-    font-size:18px;
-}
-
-.wish-message{
-    opacity:.9;
-    margin-top:5px;
-}
-#wishScroller{
-    position:absolute;
-    width:100%;
-    animation: wishScroll 30s linear infinite;
-}
-
-@keyframes wishScroll{
-
-    from{
-        transform:translateY(100%);
-    }
-
-    to{
-        transform:translateY(-100%);
-    }
-
-}
 .ai-generator {
     max-width: 700px;
     margin: 30px auto;
