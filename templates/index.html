@@ -19,9 +19,18 @@
 <div id="curtain">
     <div class="curtain-left"></div>
     <div class="curtain-right"></div>
+<audio id="theaterVoice">
+    <source src="/static/audio/theater.mp3">
+</audio>
+    <div id="theaterGate">
 
+    <div class="door left-door"></div>
+
+    <div class="door right-door"></div>
+
+</div>
    <div class="ticket-container">
-
+    
     <div class="ticket">
 
         <div class="ticket-top">
@@ -34,7 +43,8 @@
 
             <h1 id="ticketGuest">#HappinessNaylalaland19</h1>
 
-            <p id="ticketSeat">Seat : A01</p>
+            <div id="seatBadge" class="seat-badge"></div>
+
 
             <p id="ticketdate">18 June 2026</p>
 
@@ -75,7 +85,6 @@
     </div>
 </div>
 
-
 <section id="mainContent">
 
     <div class="hero">
@@ -92,7 +101,51 @@
         <p  id="heroHashtag" class="Hastag">#HappinessNaylalaland19</p>
 
     </div>
+<section class="ticket-collection">
 
+    <h2>🎟 My Birthday Ticket</h2>
+
+    <div id="collectorTicket" class="collector-ticket gold">
+
+        <div class="hologram"></div>
+
+        <div class="nayla-logo">
+            🎂 #HappinessNaylalaland19
+        </div>
+
+        <div class="ticket-header">
+            HAPPY BIRTHDAY NAYLA
+        </div>
+
+        <div class="ticket-body">
+
+            <div class="ticket-logo">
+                #HappinessNaylalaland19
+            </div>
+
+            <div class="ticket-name" id="ticketVisitor">
+                Anonymous Visitor
+            </div>
+            <div id="ticketRarity"></div>
+            <p id="ticketNumber"></p>
+
+            <p id="seatNumber"></p>
+
+            <p id="issueDate"></p>
+
+            <div id="ticketQR"></div>
+
+            <div class="barcode"></div>
+
+        </div>
+
+    </div>
+
+    <button id="downloadTicket">
+        📥 Download Ticket PNG
+    </button>
+
+</section>
     <section class="music-player">
 
     <h2>🎵 Nayla Playlist</h2>
@@ -228,6 +281,7 @@
         </div>
 
     </div>
+
 <div id="lightbox">
 
     <span id="closeLightbox">&times;</span>
@@ -544,7 +598,9 @@ window.va = window.va || function () {
   (window.vaq = window.vaq || []).push(arguments);
 };
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

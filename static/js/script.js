@@ -1,3 +1,7 @@
+let ticketId =localStorage.getItem("naylaTicket");
+let seat =localStorage.getItem("naylaSeat");
+let rarity = JSON.parse(localStorage.getItem("ticketRarity"));
+
 const { createClient } = supabase;
 
 const supabaseClient = supabase.createClient(
@@ -72,58 +76,62 @@ window.addEventListener("load", () => {
 
 });
 const scanBtn = document.getElementById("scanBtn");
+const scanner = document.getElementById("scanner");
+const scanSound = document.getElementById("scanSound");
 
 scanBtn.addEventListener("click", () => {
-    
 
-    document.getElementById("scanSound").play();
-    const scanner = document.getElementById("scanner");
+    scanSound.currentTime = 0;
+    scanSound.play();
+
+    const theaterVoice =
+    document.getElementById("theaterVoice");
+
+    if(theaterVoice){
+
+        theaterVoice.currentTime = 0;
+
+        theaterVoice.play().catch(()=>{});
+
+    }
 
     scanner.style.opacity = "1";
 
-    let pos = 0;
+    setTimeout(() => {
 
-    const scan = setInterval(() => {
+        scanner.style.opacity = "0";
 
-        pos += 8;
+        showVerifiedScreen();
 
-        scanner.style.transform =
-        `translateY(${pos}px)`;
-
-        if(pos > 350){
-
-            clearInterval(scan);
-
-            scanner.style.opacity = "0";
-
-            openTheater();
-        }
-
-    },15);
+    }, 2500);
 
 });
+
 function openTheater(){
 
     document
-        .querySelector(".curtain-left")
-        .classList.add("open-left");
+    .querySelector(".curtain-left")
+    .classList.add("open-left");
 
     document
-        .querySelector(".curtain-right")
-        .classList.add("open-right");
+    .querySelector(".curtain-right")
+    .classList.add("open-right");
 
-    launchSiteWideConfetti();
+    const voice =
+    document.getElementById("theaterVoice");
+
+    if(voice){
+        voice.play().catch(()=>{});
+    }
 
     setTimeout(() => {
 
-        const curtain =
-        document.getElementById("curtain");
-
-        curtain.style.display = "none";
+        document.getElementById("curtain")
+        .style.display = "none";
 
         document.body.style.overflowY = "auto";
 
-    }, 2200);
+    }, 2500);
 
 }
 function launchSiteWideConfetti() {
@@ -169,6 +177,7 @@ function launchSiteWideConfetti() {
     }, 250);
 
 }
+
 function showVerifiedScreen(){
 
     const verified =
@@ -182,31 +191,7 @@ function showVerifiedScreen(){
 
         openTheater();
 
-    },1000);
-
-}
-
-function showVerifiedScreen(){
-
-    const verified =
-    document.getElementById("verifiedScreen");
-
-    verified.classList.add("show");
-
-    confetti({
-        particleCount:100,
-        spread:70,
-        origin:{ y:0.6 }
-    });
-
-    setTimeout(() => {
-
-        verified.classList.remove("show");
-
-        openTheater();
-
-    },1000);
-
+    }, 3000);
 }
 const candle =
 document.getElementById("candle");
@@ -393,47 +378,32 @@ async function loadMessages(){
 
     if(!container) return;
 
+    container.innerHTML = "";
+
     const { data, error } =
     await supabaseClient
     .from("fan_messages")
     .select("*")
-    .order(
-        "created_at",
-        {
-            ascending:false
-        }
-    );
-        console.log("WISH DATA:", data);
-        console.log("WISH ERROR:", error);
+    .order("created_at",{ascending:false});
 
     if(error){
-
         console.error(error);
-
         return;
     }
-    console.log(container);
-    console.log(data);
 
-    container.innerHTML = "";
+    data.forEach(item => {
 
-    data.forEach(msg => {
+        const card =
+        document.createElement("div");
 
-        container.innerHTML += `
+        card.className = "letter-card";
 
-            <div class="letter-card">
-
-                <h3>
-                    🩷🩵 ${msg.name}
-                </h3>
-
-                <p>
-                    ${msg.message}
-                </p>
-
-            </div>
-
+        card.innerHTML = `
+            <strong>${item.name}</strong>
+            <p>${item.message}</p>
         `;
+
+        container.appendChild(card);
 
     });
 
@@ -595,22 +565,8 @@ closeLightbox.addEventListener("click", () => {
 // =====================
 // LOVE COUNTER LOAD
 // =====================
-async function loadLoveCount() {
 
-    const { count, error } = await supabaseClient
-        .from("loves")
-        .select("*", { count: "exact", head: true });
 
-    if (error) {
-        console.error(error);
-        return;
-    }
-
-    document.getElementById("loveCount").innerText =
-        `${count} Loves ❤️`;
-}
-
-loadLoveCount();
 
 
 async function loadLoveCount() {
@@ -628,6 +584,8 @@ async function loadLoveCount() {
         el.innerText = `${count.toLocaleString()} Loves ❤️`;
     }
 }
+
+loadLoveCount();
 
 // =====================
 // CLICK LOVE BUTTON
@@ -1396,9 +1354,9 @@ const LANG = {
                 
         ticketTitle: "SPECIAL BIRTHDAY SHOW",
         ticketGuest: "Guest : Nayla Suji",
-        ticketSeat: "Seat : A01",
         ticketBottom: "Admit One",
         ticketDate: "18 June 2026",
+        seatBadge: "🎫 Your Seat",
         Name: 'NAYLA',
         Hastag: '#HappinessNaylalaland19',
 
@@ -1463,6 +1421,11 @@ const LANG = {
         fanOption: "Fan",
         friendOption: "Friend",
         supporterOption: "Supporter",
+
+        moodHappy: "Happy",
+        moodProud: "Proud",
+        moodThankful: "Thankful",
+        moodExcited: "Excited",
     },
 
     id: {
@@ -1503,9 +1466,9 @@ const LANG = {
 
         ticketTitle: "PERTUNJUKAN ULANG TAHUN SPESIAL",
         ticketGuest: "Tamu : Nayla Suji",
-        ticketSeat: "Kursi : A01",
         ticketBottom: "Satu Tiket Masuk",
         ticketDate: "18 Juni 2026",
+        seatBadge: "🎫 Kursi Kamu",
         Name: 'NAYLA',
         Hastag: '#HappinessNaylalaland19',
 
@@ -1557,7 +1520,12 @@ const LANG = {
             "Terima kasih untuk setiap senyuman, penampilan, dan kenangan.",
 
         muteOn: "🔊 Musik ON",
-        muteOff: "🔇 Musik OFF"
+        muteOff: "🔇 Musik OFF",
+
+        moodHappy: "Bahagia",
+        moodProud: "Bangga",
+        moodThankful: "Bersyukur",
+        moodExcited: "Bersemangat",
     },
 
     jp: {
@@ -1596,9 +1564,9 @@ const LANG = {
         supporterOption: "サポーター",
         ticketTitle: "特別バースデー公演",
         ticketGuest: "ゲスト : ナイラ・スジ",
-        ticketSeat: "座席 : A01",
         ticketBottom: "入場券",
         ticketDate: "2026年6月18日",
+        seatBadge: "🎫 あなたの座席",
         Name: 'ナイラ',
         Hastag: '#HappinessNaylalaland19',
 
@@ -1650,7 +1618,12 @@ const LANG = {
             "たくさんの笑顔、パフォーマンス、思い出をありがとう。",
 
         muteOn: "🔊 音楽 ON",
-        muteOff: "🔇 音楽 OFF"
+        muteOff: "🔇 音楽 OFF",
+
+        moodHappy: "嬉しい",
+        moodProud: "誇らしい",
+        moodThankful: "感謝",
+        moodExcited: "ワクワク",
     }
 };
 
@@ -1696,8 +1669,8 @@ function changeLanguage(lang) {
 
     setText("ticketTitle", t.ticketTitle);
     setText("ticketGuest", t.ticketGuest);
-    setText("ticketSeat", t.ticketSeat);
     setText("ticketDate", t.ticketDate);
+    setText("seatBadge", t.seatBadge);
     setText("ticketBottom", t.ticketBottom);
     setText("heroName", t.Name);
     setText("heroHashtag", t.Hastag);
@@ -1739,6 +1712,8 @@ function changeLanguage(lang) {
 
     setQuery(".fan-wall h2", t.fanWallTitle);
 
+    updateSeatBadge();
+        
     const fanName = document.getElementById("fanName");
     if (fanName) fanName.placeholder = t.fanName;
 
@@ -1761,7 +1736,7 @@ function changeLanguage(lang) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    
     document.querySelectorAll(".lang-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             changeLanguage(btn.dataset.lang);
@@ -1789,6 +1764,7 @@ document.querySelectorAll(".lang-btn")
     });
 
 });
+    updateSeatBadge();
 
     changeLanguage(
         localStorage.getItem("language") || "en"
@@ -1927,3 +1903,441 @@ document.getElementById(
 "#HappyBirthdayNayla19";
 document.body.style.animation =
 "rainbowBackground 8s infinite";
+
+function generateSeatNumber() {
+    const rows = ["A","B","C","D","E","F","G","H"];
+
+    const row =
+        rows[Math.floor(Math.random() * rows.length)];
+
+    const number =
+        String(Math.floor(Math.random() * 24) + 1)
+        .padStart(2, "0");
+
+    return `${row}-${number}`;
+}
+
+// ambil kursi lama
+let savedSeat =
+    localStorage.getItem("naylaSeat");
+
+// kalau belum ada buat baru
+if (!savedSeat) {
+
+    savedSeat = generateSeatNumber();
+
+    localStorage.setItem(
+        "naylaSeat",
+        savedSeat
+    );
+}
+
+
+// Badge seat
+const seatBadge =
+document.getElementById("seatBadge");
+
+if(seatBadge){
+    seatBadge.textContent =
+    `🎫 Your Seat : ${savedSeat}`;
+}
+
+// Gate animation
+setTimeout(() => {
+
+    const gate =
+    document.getElementById("theaterGate");
+
+    if(gate){
+        gate.classList.add("open");
+    }
+
+}, 2000);
+
+    function updateSeatBadge() {
+
+    const currentLang =
+        localStorage.getItem("language") || "en";
+
+    const seatBadge =
+        document.getElementById("seatBadge");
+
+    if (!seatBadge) return;
+
+    seatBadge.textContent =
+        `${LANG[currentLang].seatBadge} : ${savedSeat}`;
+    }
+    function generateTicketId(){
+
+    return String(
+        Math.floor(Math.random() * 999999)
+    ).padStart(6,"0");
+
+}
+
+function generateSeat(){
+
+    const rows = [
+        "A","B","C","D",
+        "E","F","G","H"
+    ];
+
+    const row =
+    rows[Math.floor(Math.random()*rows.length)];
+
+    const number =
+    String(
+        Math.floor(Math.random()*24)+1
+    ).padStart(2,"0");
+
+    return `${row}-${number}`;
+}
+
+if(!ticketId){
+
+    ticketId =
+    generateTicketId();
+
+    localStorage.setItem(
+        "naylaTicket",
+        ticketId
+    );
+
+}
+
+if(!seat){
+
+    seat =
+    generateSeat();
+
+    localStorage.setItem(
+        "naylaSeat",
+        seat
+    );
+
+}
+
+// =========================
+// TICKET GENERATOR
+// =========================
+
+function generateTicketId(){
+
+    return String(
+        Math.floor(Math.random()*999999)
+    ).padStart(6,"0");
+
+}
+
+if(!ticketId){
+
+    ticketId =
+    generateTicketId();
+
+    localStorage.setItem(
+        "naylaTicket",
+        ticketId
+    );
+
+}
+
+if(!seat){
+
+    seat =
+    generateSeatNumber();
+
+    localStorage.setItem(
+        "naylaSeat",
+        seat
+    );
+
+}
+
+// fill ticket
+
+document.getElementById(
+    "ticketNumber"
+).innerHTML =
+`🎟 Ticket #${ticketId}`;
+
+document.getElementById(
+    "seatNumber"
+).innerHTML =
+`💺 Seat : ${seat}`;
+
+document.getElementById(
+    "issueDate"
+).innerHTML =
+`📅 Issued : 18 June 2026`;
+
+// visitor
+
+document.getElementById(
+    "ticketVisitor"
+).innerText =
+"Anonymous Visitor";
+
+// barcode
+
+document.querySelector(
+    ".barcode"
+).innerText =
+ticketId
+.split("")
+.map(
+    n => "|".repeat(
+        Number(n)+1
+    )
+)
+.join(" ");
+
+// qr
+
+new QRCode(
+
+    document.getElementById(
+        "ticketQR"
+    ),
+
+    {
+        text:
+        `Anonymous|${ticketId}|${seat}`,
+
+        width:100,
+
+        height:100
+    }
+
+);
+document
+.getElementById(
+    "downloadTicket"
+)
+.addEventListener(
+    "click",
+    async () => {
+
+    const visitorName =
+    prompt(
+        "Enter your name"
+    );
+
+    if(
+        !visitorName ||
+        visitorName.trim()===""
+    ){
+        return;
+    }
+
+    document.getElementById(
+        "ticketVisitor"
+    ).innerText =
+    visitorName;
+
+    const qrContainer =
+    document.getElementById(
+        "ticketQR"
+    );
+
+    qrContainer.innerHTML = "";
+
+    new QRCode(
+        qrContainer,
+        {
+            text:
+            `${visitorName}|${ticketId}|${seat}`,
+
+            width:100,
+
+            height:100
+        }
+    );
+
+    setTimeout(async ()=>{
+
+        const canvas =
+        await html2canvas(
+            document.getElementById(
+                "collectorTicket"
+            ),
+            {
+                scale:2
+            }
+        );
+
+        const link =
+        document.createElement("a");
+
+        link.download =
+        `Nayla-Ticket-${ticketId}.png`;
+
+        link.href =
+        canvas.toDataURL(
+            "image/png"
+        );
+
+        link.click();
+
+    },500);
+
+});
+const rarities = [
+    {
+        name:"Common",
+        chance:70,
+        color:"#bdbdbd"
+    },
+    {
+        name:"Rare",
+        chance:20,
+        color:"#42a5f5"
+    },
+    {
+        name:"Epic",
+        chance:8,
+        color:"#ab47bc"
+    },
+    {
+        name:"Legendary",
+        chance:1.9,
+        color:"#ff9800"
+    },
+    {
+        name:"Oshimen Seat",
+        chance:0.1,
+        color:"#ffd700"
+    }
+];
+
+function generateRarity(){
+
+    const roll =
+    Math.random()*100;
+
+    let current = 0;
+
+    for(const rarity of rarities){
+
+        current += rarity.chance;
+
+        if(roll <= current){
+            return rarity;
+        }
+    }
+
+    return rarities[0];
+}
+
+if(!rarity){
+
+    rarity = generateRarity();
+
+    localStorage.setItem(
+        "ticketRarity",
+        JSON.stringify(rarity)
+    );
+}
+document.getElementById(
+    "ticketRarity"
+).innerHTML =
+`⭐ ${rarity.name}`;
+const goldenChance =
+Math.floor(
+    Math.random()*1000
+);
+
+const isGolden =
+goldenChance === 777;
+if(isGolden){
+
+    document
+    .getElementById("collectorTicket")
+    .classList.add(
+        "golden-ticket"
+    );
+}
+async function initTicketCounter(){
+
+    // const { data } =
+    // await supabaseClient
+    // .from("ticket_counter")
+    // .insert({})
+    // .select();
+
+    // const { count } =
+    // await supabaseClient
+    // .from("ticket_counter")
+    // .select("*",{
+    //     count:"exact",
+    //     head:true
+    // });
+
+    // console.log(
+    //     "Total Ticket:",
+    //     count
+    // );
+}
+
+initTicketCounter();
+const themes = [
+
+"pink",
+
+"blue",
+
+"purple",
+
+"gold",
+
+"sakura"
+
+];
+const theme =
+themes[
+Math.floor(
+Math.random()*themes.length
+)
+];
+
+document
+.getElementById(
+"collectorTicket"
+)
+.classList.add(theme);
+scanBtn.addEventListener(
+"click",
+()=>{
+
+document
+.getElementById(
+"collectorTicket"
+)
+.classList.add(
+"ticket-tear"
+);
+
+});
+function seatTier(seat){
+
+if(seat.startsWith("A"))
+return "VIP Front Row";
+
+if(seat.startsWith("B"))
+return "Premium";
+
+if(seat.startsWith("C"))
+return "Gold";
+
+return "Standard";
+}
+const ticket = document.getElementById("collectorTicket");
+
+ticket.classList.add("show-ticket");
+
+setTimeout(() => {
+    ticket.classList.add("ticket-shake");
+}, 2000);
+
+setTimeout(() => {
+    ticket.classList.add("ticket-tear");
+}, 3500);
