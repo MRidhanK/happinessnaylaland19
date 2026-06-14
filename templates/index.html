@@ -271,11 +271,19 @@
                 </p>
             </div>
         </div>
-
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename='img/RHCONCERT.jpg') }}" alt="2026">
+            <div class="gallery-info">
+                <h3>13-06-2026</h3>
+                <p id="gallery2026RHCONCERT">
+                    Nayla performed <b>Bird</b>, ranked 15th in Request Hour 2026, alongside Aurelia from Generation 10 and Aurhel Alana from Generation 12. A special and memorable performance that made many fans proud and emotional. 🕊️🩵
+                </p>
+            </div>
+        </div>
         <div class="gallery-card">
             <img src="{{ url_for('static', filename='img/2026.jpg') }}" alt="2026">
             <div class="gallery-info">
-                <h3>06-2026</h3>
+                <h3>18-06-2026</h3>
                 <p id="gallery2026">#HappinessNaylalaland19 🎂</p>
             </div>
         </div>
@@ -308,6 +316,7 @@
 
 </section>
 <section class="countdown-section">
+    
     <h2>🎂 Countdown Birthday Nayla 🎂</h2>
 
     <div class="countdown-container">
@@ -331,7 +340,7 @@
             <span id="seconds">00</span>
             <p id="secondLabel">Detik</p>
         </div>
-
+        <p id="countdownWarning"></p>
     </div>
     <section class="love-section">
 
@@ -363,7 +372,56 @@
     </div>
 
 </div>
-    <div id="birthdayMessage"></div>
+<canvas id="fireworkCanvas"></canvas>
+    <div id="finalCountdownOverlay">
+
+    <div class="birthday-popup-content">
+
+        <div class="birthday-icon">
+            🎂
+        </div>
+
+        <h2>
+            Happy 19th Birthday Nayla
+        </h2>
+
+        <p>
+            The celebration will begin shortly ✨
+        </p>
+
+        <div id="finalSeconds">
+            10s
+        </div>
+
+    </div>
+
+</div>
+<div id="birthdayEventOverlay">
+
+    <div class="birthday-card">
+
+        <img src="/static/img/nayla.png"
+             class="birthday-photo">
+
+        <div class="birthday-icon">🎂</div>
+
+        <h1>Happy Birthday</h1>
+
+        <h2>Nayla</h2>
+
+        <div class="birthday-hashtag">
+            #HappinessNaylalaland19
+        </div>
+
+        <button id="enterBirthday" onclick="document.getElementById('birthdayEventOverlay').classList.remove('show')" >
+            ✨ Enter Naylaland
+        </button>
+
+    </div>
+
+</div>
+
+</div>
     </section>
     <audio id="birthdaySong">
 

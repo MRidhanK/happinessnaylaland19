@@ -1400,31 +1400,137 @@ button{
 #birthdayEventOverlay{
 
     position:fixed;
-    inset:0;
 
-    background:
-    radial-gradient(
-        circle,
-        rgba(0,0,0,.6),
-        rgba(0,0,0,.95)
-    );
+    top:50%;
+    left:50%;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    transform:
+    translate(-50%,-50%);
 
-    opacity:0;
-    visibility:hidden;
+    width:380px;
 
-    transition:.8s;
+    display:none;
 
-    z-index:9999999;
+    z-index:999999;
 }
 
 #birthdayEventOverlay.show{
+    display:block;
+}
 
-    opacity:1;
-    visibility:visible;
+.birthday-card{
+
+    background:
+    rgba(0,0,0,.75);
+
+    backdrop-filter:
+    blur(15px);
+
+    border:
+    1px solid rgba(255,215,0,.4);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:
+    0 0 30px rgba(255,215,0,.4);
+
+    animation:
+    birthdayReveal .8s ease;
+}
+
+.birthday-card h1{
+
+    color:#FFD700;
+
+    font-size:2.5rem;
+
+    margin:10px 0;
+}
+
+.birthday-card h2{
+
+    color:white;
+
+    font-size:3rem;
+
+    margin-bottom:10px;
+}
+
+.birthday-hashtag{
+
+    color:#FFD700;
+
+    margin-bottom:20px;
+
+    font-size:1rem;
+}
+
+.birthday-photo{
+
+    width:120px;
+
+    border-radius:20px;
+
+    margin-bottom:10px;
+}
+
+@keyframes birthdayReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(20px)
+        scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+}
+
+#enterBirthday{
+
+    margin-top:20px;
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#FFD700;
+
+    color:black;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    display:block;
+}
+
+#enterBirthday:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 0 15px gold;
 }
 
 .birthday-event-content{
@@ -2204,6 +2310,17 @@ button{
 
     box-shadow:
     0 0 30px rgba(255,215,0,.4);
+    animation: revealTicket .8s ease;
+}
+@keyframes revealTicket{
+    from{
+        opacity:0;
+        transform:scale(.8) rotate(-5deg);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) rotate(0);
+    }
 }
 
 .nayla-logo{
@@ -2413,4 +2530,108 @@ linear-gradient(
         opacity:1;
         transform:translate(0,0);
     }
+}
+.legendary{
+    box-shadow:
+    0 0 20px gold,
+    0 0 40px orange;
+}
+#finalCountdownOverlay{
+
+    position:fixed;
+
+    top:50%;
+    left:50%;
+
+    transform:
+    translate(-50%,-50%);
+
+    width:340px;
+
+    display:none;
+
+    z-index:999999;
+}
+
+#finalCountdownOverlay.show{
+    display:block;
+}
+
+.birthday-popup-content{
+
+    background:
+    rgba(0,0,0,.75);
+
+    backdrop-filter:
+    blur(15px);
+
+    border:
+    1px solid rgba(255,215,0,.4);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:
+    0 0 30px rgba(255,215,0,.4);
+}
+
+.birthday-icon{
+
+    font-size:3rem;
+
+    margin-bottom:10px;
+}
+
+.birthday-popup-content h2{
+
+    color:#FFD700;
+
+    font-size:1.8rem;
+
+    margin-bottom:10px;
+}
+
+.birthday-popup-content p{
+
+    color:white;
+
+    opacity:.9;
+
+    margin-bottom:15px;
+}
+
+#finalSeconds{
+
+    color:#FFD700;
+
+    font-size:1rem;
+
+    font-weight:bold;
+}
+
+.countdown-circle{
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    border:6px solid gold;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+    0 0 40px gold;
+}
+
+#finalSeconds{
+
+    font-size:7rem;
+    color:gold;
+    font-weight:bold;
 }

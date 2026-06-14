@@ -1,6 +1,7 @@
 let ticketId =localStorage.getItem("naylaTicket");
 let seat =localStorage.getItem("naylaSeat");
 let rarity = JSON.parse(localStorage.getItem("ticketRarity"));
+let birthdayStarted = false;
 
 const { createClient } = supabase;
 
@@ -18,6 +19,27 @@ const countdown = setInterval(() => {
     const now = new Date().getTime();
 
     const distance = birthdayDate - now;
+
+    const totalSeconds =
+    Math.floor(distance / 1000);
+
+   if(
+    totalSeconds <= 10 &&
+    totalSeconds > 0
+){
+
+    const overlay =
+    document.getElementById(
+        "finalCountdownOverlay"
+    );
+
+    overlay?.classList.add("show");
+
+    document.getElementById(
+        "finalSeconds"
+    ).innerHTML =
+    totalSeconds;
+}
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
@@ -41,27 +63,50 @@ const countdown = setInterval(() => {
     document.getElementById("minutes").innerHTML = minutes;
     document.getElementById("seconds").innerHTML = seconds;
 
-    if (distance < 0) {
+if(
+    totalSeconds <= 10 &&
+    totalSeconds > 0
+){
+
+    const finalSeconds =
+    document.getElementById(
+        "finalSeconds"
+    );
+
+    if(finalSeconds){
+
+        finalSeconds.innerHTML =
+        totalSeconds;
+
+    }
+
+}
+
+    if (distance <= 0) {
 
         clearInterval(countdown);
 
-        document.querySelector(".countdown-container").style.display = "none";
+        warning.innerHTML =
+        "🎂 HAPPY BIRTHDAY NAYLA 🎂";
 
-        document.getElementById("birthdayMessage").innerHTML = `
+        document.querySelector(
+            ".countdown-container"
+        ).style.display = "none";
+
+        document.getElementById(
+            "birthdayMessage"
+        ).innerHTML = `
             🎉 HAPPY 19TH BIRTHDAY NAYLA 🎉
             <br>
             #HappinessNaylalaland19
         `;
 
-        confetti({
-            particleCount: 300,
-            spread: 180,
-            origin: { y: 0.6 }
-        });
+        startMidnightBirthdayEvent();
 
     }
 
 }, 1000);
+
 window.addEventListener("load", () => {
 
     setTimeout(() => {
@@ -216,113 +261,9 @@ candle.addEventListener("click", () => {
 
         wishText.style.display = "block";
 
-        launchBirthdayShow();
-
     },1200);
 
 });
-function launchBirthdayShow(){
-
-    // ledakan utama
-    confetti({
-        particleCount: 500,
-        spread: 360,
-        startVelocity: 50,
-        origin: { x: 0.5, y: 0.6 }
-    });
-
-    // hujan confetti 5 detik
-    const duration = 5000;
-    const end = Date.now() + duration;
-
-    const interval = setInterval(() => {
-
-        confetti({
-            particleCount: 20,
-            spread: 120,
-            origin: {
-                x: Math.random(),
-                y: Math.random() * 0.7
-            }
-        });
-        confetti({
-            particleCount: 100,
-            angle: 60,
-            spread: 80,
-            origin: { x: 0, y: 0.7 }
-        });
-
-        confetti({
-            particleCount: 100,
-            angle: 120,
-            spread: 80,
-            origin: { x: 1, y: 0.7 }
-        });
-        if (Date.now() > end) {
-            clearInterval(interval);
-        }
-
-    }, 150);
-
-    startFireworks();
-
-    const song =
-    document.getElementById("birthdaySong");
-
-    if(song){
-
-        playExclusive(song);
-
-    }
-}
-
-function startFireworks(){
-
-    const duration = 5000;
-
-    const end =
-    Date.now() + duration;
-
-    const interval = setInterval(() => {
-
-        confetti({
-
-            particleCount:50,
-
-            angle:60,
-
-            spread:80,
-
-            origin:{
-                x:Math.random(),
-                y:Math.random()*0.5
-            }
-
-        });
-
-        confetti({
-
-            particleCount:50,
-
-            angle:120,
-
-            spread:80,
-
-            origin:{
-                x:Math.random(),
-                y:Math.random()*0.5
-            }
-
-        });
-
-        if(Date.now() > end){
-
-            clearInterval(interval);
-        }
-
-    },300);
-
-}
 const fanForm =
 document.getElementById("fanForm");
 
@@ -409,6 +350,7 @@ async function loadMessages(){
 
 }
 loadMessages();
+
 async function initVisitorCounter() {
 
     let visitorId =
@@ -562,13 +504,6 @@ closeLightbox.addEventListener("click", () => {
 
 });
 
-// =====================
-// LOVE COUNTER LOAD
-// =====================
-
-
-
-
 async function loadLoveCount() {
     const { count, error } = await supabaseClient
         .from("loves")
@@ -587,9 +522,6 @@ async function loadLoveCount() {
 
 loadLoveCount();
 
-// =====================
-// CLICK LOVE BUTTON
-// =====================
 const loveBtn = document.getElementById("loveBtn");
 
 if (loveBtn) {
@@ -624,9 +556,6 @@ if (loveBtn) {
     });
 }
 
-// =====================
-// REALTIME UPDATE (PRO STYLE)
-// =====================
 supabaseClient
     .channel("loves-channel")
     .on(
@@ -841,8 +770,11 @@ pauseMusic.addEventListener("click", () => {
     bgMusic.pause();
 
 });
+
 function startMidnightBirthdayEvent(){
-    document.body.style.animation = "birthdayFlash 1s infinite";
+
+    if(birthdayStarted) return;
+
     const overlay =
     document.getElementById(
         "birthdayEventOverlay"
@@ -850,37 +782,56 @@ function startMidnightBirthdayEvent(){
 
     overlay.classList.add("show");
 
-    confetti({
-        particleCount:1000,
-        spread:360,
-        startVelocity:60,
-        origin:{ y:0.6 }
-    });
+    screenFlash();
 
-    const song =
-    document.getElementById(
-        "birthdaySong"
+    playExclusive(
+        document.getElementById(
+            "birthdaySong"
+        )
     );
 
-    if(song){
-
-        playExclusive(song);
-
-    }
+    launchSiteWideConfetti();
 
     startMegaFireworks();
 
     autoOpenBirthdayLetter();
 
-    document
-    .querySelector(".hero")
-    .classList.add("birthday-mode");
+    document.body.classList.add(
+        "birthday-night"
+    );
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
-        overlay.classList.remove("show");
+        overlay.classList.remove(
+            "show"
+        );
 
-    },10000);
+    },25000);
+
+}
+
+function startFinalCountdown(sec){
+
+    const overlay =
+    document.getElementById(
+        "finalCountdownOverlay"
+    );
+
+    overlay.style.display =
+    "flex";
+
+    document.getElementById(
+        "finalSeconds"
+    ).innerHTML = sec;
+
+    if(sec <= 3){
+
+        confetti({
+            particleCount:50,
+            spread:90
+        });
+    }
+
 }
 function startMegaFireworks(){
 
@@ -916,6 +867,54 @@ function startMegaFireworks(){
     },250);
 
 }
+
+function screenFlash(){
+
+    const flash =
+    document.createElement("div");
+
+    flash.style.position =
+    "fixed";
+
+    flash.style.inset = "0";
+
+    flash.style.background =
+    "white";
+
+    flash.style.zIndex =
+    "9999999";
+
+    document.body.appendChild(
+        flash
+    );
+
+    setTimeout(() => {
+
+        flash.remove();
+
+    },200);
+
+}
+
+function launchMiniFirework(){
+
+    confetti({
+
+        particleCount:300,
+
+        spread:180,
+
+        startVelocity:50,
+
+        origin:{
+            x:0.5,
+            y:0.5
+        }
+
+    });
+
+}
+
 function autoOpenBirthdayLetter(){
 
     const letter =
@@ -1338,6 +1337,7 @@ const LANG = {
         gallery2023:"The First Step of a Beautiful Journey",
         gallery2024:"Growing Through JKT48 School",
         gallery2025:"Promoted to Core Member & Trusted Translator at Sister Reunion Festiva",
+        gallery2026RHCONCERT:"Nayla performed <b>Bird</b>, ranked 15th in Request Hour 2026, alongside Aurelia from Generation 10 and Aurhel Alana from Generation 12. A special and memorable performance that made many fans proud and emotional. 🕊️🩵",
         gallery2026:"#HappinessNaylalaland19 🎂",
 
         timeline2023:
@@ -1435,7 +1435,7 @@ const LANG = {
         gallery2024: "Bertumbuh Bersama JKT48 School",
 
         gallery2025: "Dipromosikan Menjadi Core Member & Dipercaya Sebagai Penerjemah di Sister Reunion Festival",
-
+        gallery2026RHCONCERT: "Nayla membawakan lagu <b>Bird</b>, yang berada di peringkat ke-15 dalam Request Hour 2026, bersama Aurelia dari Generasi 10 dan Aurhel Alana dari Generasi 12. Sebuah penampilan spesial dan tak terlupakan yang membuat banyak penggemar bangga dan terharu. 🕊️🩵", 
         gallery2026: "#HappinessNaylalaland19 🎂",
         
         timeline2023:
@@ -1535,7 +1535,7 @@ const LANG = {
         gallery2024: "JKT48 Schoolとともに成長",
 
         gallery2025: "正規メンバーへ昇格し、シスターグループ再会フェスティバルで通訳として活躍",
-
+        gallery2026RHCONCERT:"ネイラは、第10世代のオーレリアと第12世代のオーヘル・アラナと共に、リクエストアワー2026で15位にランクインした<b>Bird</b>を披露しました。多くのファンを誇らしく感動させた、特別で思い出深いパフォーマンスでした。🕊️🩵",
         gallery2026: "#HappinessNaylalaland19 🎂",
         timeline2023:
         "2023 — 美しい旅の第一歩",
@@ -1635,6 +1635,11 @@ function changeLanguage(lang) {
         if (el) el.textContent = value;
     };
 
+    const setHTML = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = value;
+    };
+
     const setQuery = (selector, value) => {
         const el = document.querySelector(selector);
         if (el) el.textContent = value;
@@ -1648,6 +1653,7 @@ function changeLanguage(lang) {
     setText("gallery2023", t.gallery2023);
     setText("gallery2024", t.gallery2024);
     setText("gallery2025", t.gallery2025);
+    setHTML("gallery2026RHCONCERT", t.gallery2026RHCONCERT);
     setText("gallery2026", t.gallery2026);
 
     setText("dayLabel", t.day);
@@ -1797,112 +1803,6 @@ async function loadPollData(){
 
     updateChart(counts);
 }
-function launchBirthdayEvent(){
-
-    const overlay =
-    document.getElementById("midnightUnlock");
-
-    overlay.style.display = "flex";
-
-    document.body.classList.add("birthday-mode");
-
-    // play birthday song
-    const song =
-    document.getElementById("birthdaySong");
-
-    song.volume = 1;
-    song.play().catch(()=>{});
-
-    // confetti fullscreen
-    const duration = 15000;
-    const end = Date.now() + duration;
-
-    const interval = setInterval(()=>{
-
-        confetti({
-            particleCount:8,
-            angle:60,
-            spread:100,
-            origin:{x:0}
-        });
-
-        confetti({
-            particleCount:8,
-            angle:120,
-            spread:100,
-            origin:{x:1}
-        });
-
-        if(Date.now() > end){
-            clearInterval(interval);
-        }
-
-    },250);
-
-    // ubah countdown
-    const countdown =
-    document.getElementById("birthdayMessage");
-
-    countdown.innerHTML = `
-        <div class="birthday-title">
-            🎂 HAPPY BIRTHDAY NAYLA 🎂
-        </div>
-        `;
-
-}
-function checkBirthdayUnlock(){
-
-    const now = new Date();
-
-    const unlockDate =
-    new Date("2026-06-18T00:00:00+07:00");
-
-    if(now >= unlockDate){
-
-        if(
-            !localStorage.getItem(
-            "birthdayUnlocked")
-        ){
-
-            launchBirthdayEvent();
-
-            localStorage.setItem(
-                "birthdayUnlocked",
-                "true"
-            );
-
-        }
-
-    }
-
-}
-
-setInterval(
-    checkBirthdayUnlock,
-    1000
-);
-
-checkBirthdayUnlock();
-document
-.getElementById("closeUnlock")
-?.addEventListener("click",()=>{
-
-    document.getElementById(
-        "midnightUnlock"
-    ).style.display = "none";
-
-});
-document.getElementById(
-    "heroName"
-).innerHTML =
-"🎂 NAYLA 🎂";
-
-document.getElementById(
-    "heroHashtag"
-).innerHTML =
-"#HappyBirthdayNayla19";
-document.body.style.animation =
-"rainbowBackground 8s infinite";
 
 function generateSeatNumber() {
     const rows = ["A","B","C","D","E","F","G","H"];
@@ -2341,3 +2241,10 @@ setTimeout(() => {
 setTimeout(() => {
     ticket.classList.add("ticket-tear");
 }, 3500);
+
+if(rarity.name==="Legendary"){
+    confetti({
+        particleCount:200
+    });
+}
+
