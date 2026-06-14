@@ -609,25 +609,107 @@ if(now >= birthdayUnlockDate){
     "🔒 Locked until 18 June 2026";
 
 }
-const letterText = `
+const LETTERS = {
+    id: `
 Hai Nayla, 🎂🩵🩷
 
 Selamat ulang tahun yang ke-19! 🥳✨
 
-Semoga di umur yang baru ini kamu selalu diberikan kesehatan, kebahagiaan, dan dikelilingi oleh orang-orang baik yang selalu mendukung kamu.
+Semoga di umur yang baru ini kamu selalu diberikan kesehatan, kebahagiaan, kekuatan, dan dikelilingi oleh orang-orang baik yang selalu mendukung setiap langkahmu.
 
-Jujur aku bingung harus mulai dari mana, karena aku memang nggak terlalu pintar merangkai kata-kata hehe. Tapi aku tetap pengen nulis surat ini karena ada satu hal yang ingin aku sampaikan.
+Jujur aku bingung harus mulai dari mana, karena aku memang nggak terlalu pintar merangkai kata-kata hehe. Tapi aku tetap ingin menulis surat ini karena ada banyak hal yang ingin aku sampaikan di hari spesialmu.
 
-Terima kasih karena sudah terus berjuang dan memberikan yang terbaik sampai hari ini. Melihat perjalanan, usaha, dan perkembangan kamu dari waktu ke waktu selalu menjadi sesuatu yang menyenangkan dan membanggakan untuk disaksikan.
+Terima kasih karena sudah terus berjuang dan memberikan yang terbaik sampai hari ini. Melihat perjalanan, usaha, dan perkembangan kamu dari waktu ke waktu selalu menjadi sesuatu yang menyenangkan dan membanggakan untuk disaksikan. Dari setiap penampilan, setiap kesempatan yang kamu dapatkan, sampai bagaimana kamu terus berkembang menjadi versi terbaik dari dirimu sendiri, semuanya terasa begitu berarti.
 
-Jangan terlalu keras pada diri sendiri ya. Nikmati setiap prosesnya, rayakan setiap pencapaian kecil, dan tetap percaya pada dirimu sendiri. Kamu sudah melangkah sejauh ini, dan itu adalah sesuatu yang patut dibanggakan.
+Ada satu momen yang belakangan ini benar-benar membuat aku bangga. Saat Request Hour 2026, kamu berhasil membawakan lagu Bird bersama Ci Lia dan Lana. Terlebih lagi, lagu tersebut berhasil menempati posisi #15. Itu bukan hanya pencapaian yang membanggakan, tetapi juga menjadi momen yang sangat spesial untuk disaksikan.
 
-Semoga tahun ini membawa lebih banyak senyum, pengalaman indah, serta hal-hal baik yang selama ini kamu harapkan. Semoga semua mimpi yang sedang kamu kejar bisa tercapai pada waktu yang tepat.
+Melihat kamu berdiri di atas panggung membawakan lagu yang begitu ikonik dengan penuh percaya diri membuat aku ikut merasa bahagia. Momen itu terasa seperti salah satu bukti bahwa semua usaha, latihan, kerja keras, dan dedikasi yang selama ini kamu berikan perlahan membuahkan hasil. Aku yakin banyak orang yang merasa bangga melihat penampilan tersebut, dan aku adalah salah satunya.
+
+Walaupun mungkin perjalanan yang kamu lalui tidak selalu mudah, semoga kamu selalu ingat bahwa setiap langkah kecil yang kamu ambil tetap memiliki arti. Setiap pencapaian, sekecil apa pun, layak untuk dirayakan. Jangan terlalu keras pada diri sendiri ya. Nikmati setiap prosesnya, percaya pada kemampuanmu, dan terus melangkah dengan kecepatanmu sendiri.
+
+Terima kasih untuk semua senyum, semangat, dan kebahagiaan yang sudah kamu bagikan kepada banyak orang. Mungkin kamu tidak selalu menyadarinya, tapi hal-hal kecil yang kamu lakukan sering kali bisa membuat hari seseorang menjadi lebih baik.
+
+Semoga di usia yang ke-19 ini kamu mendapatkan lebih banyak pengalaman indah, lebih banyak kesempatan untuk berkembang, lebih banyak alasan untuk tersenyum, dan tentunya lebih banyak mimpi yang berhasil kamu wujudkan. Semoga semua harapan dan cita-cita yang sedang kamu kejar bisa tercapai pada waktu yang tepat.
 
 Happy Birthday, Nayla. 🎂✨
 
-Tetap sehat, tetap bahagia, dan terus bersinar dengan caramu sendiri. 🩵🩷
-`;
+Terima kasih sudah menjadi Nayla yang terus berusaha, terus belajar, dan terus bersinar dengan caranya sendiri.
+
+Tetap sehat, tetap bahagia, dan teruslah bersinar lebih terang dari sebelumnya. Aku akan selalu mendukung dan mendoakan yang terbaik untukmu dari jauh. 🩵🩷
+
+Once again, Happy 19th Birthday, Nayla. ✨🎂
+
+#HappinessNaylalaland19
+`,
+
+    en: `
+Hi Nayla, 🎂🩵🩷
+
+Happy 19th Birthday! 🥳✨
+
+I hope this new year of your life brings you good health, happiness, strength, and wonderful people who will always support you every step of the way.
+
+Honestly, I wasn't sure where to begin because I'm not very good at putting my feelings into words. But I still wanted to write this letter because there are many things I want to tell you on your special day.
+
+Thank you for continuing to work hard and giving your best until today.
+
+Watching your journey, efforts, and growth over time has always been something inspiring and meaningful to witness.
+
+One recent moment made me especially proud. During Request Hour 2026, you performed Bird together with Ci Lia and Lana, and the song ranked #15.
+
+Seeing you stand on stage and perform such an iconic song with confidence made me genuinely happy. It felt like proof that all your hard work, practice, dedication, and effort are gradually paying off.
+
+Even if the journey isn't always easy, I hope you remember that every small step you take matters.
+
+Thank you for all the smiles, energy, and happiness you've shared with so many people.
+
+May your 19th year bring even more beautiful experiences, opportunities, reasons to smile, and dreams coming true.
+
+Happy Birthday, Nayla. 🎂✨
+
+Thank you for being someone who keeps trying, learning, and shining in your own way.
+
+Stay healthy, stay happy, and keep shining brighter than ever. I will always support and pray for the best for you from afar. 🩵🩷
+
+Once again, Happy 19th Birthday, Nayla. ✨🎂
+
+#HappinessNaylalaland19
+`,
+
+    jp: `
+ナイラへ 🎂🩵🩷
+
+19歳のお誕生日おめでとうございます！🥳✨
+
+新しい一年が健康と幸せ、そして素敵な人たちとの出会いに満ちたものになりますように。
+
+正直なところ、どこから書き始めればいいのかわかりませんでした。私はあまり言葉を上手に並べられるタイプではありません。でも、特別な日にどうしても伝えたいことがたくさんあったので、この手紙を書きました。
+
+今日まで努力を続け、いつもベストを尽くしてくれてありがとう。
+
+あなたの成長や挑戦を見守ることは、いつも嬉しくて誇らしい気持ちになります。
+
+最近特に感動したのは、リクエストアワー2026でCi Liaさん、Lanaさんと一緒に「Bird」を披露し、15位にランクインしたことです。
+
+自信を持ってステージに立つ姿は本当に素晴らしく、これまでの努力が少しずつ実を結んでいる証だと感じました。
+
+どんなに大変な時でも、一歩一歩の積み重ねには必ず意味があります。
+
+たくさんの笑顔と幸せを届けてくれてありがとう。
+
+19歳の一年が、さらに素敵な思い出と成長の機会にあふれる年になりますように。
+
+お誕生日おめでとう、ナイラ。🎂✨
+
+これからも自分らしく輝き続けてください。
+
+遠くからいつも応援しています。🩵🩷
+
+改めて、19歳のお誕生日おめでとうございます！✨🎂
+
+#HappinessNaylalaland19
+`
+};
 
 openLetter.addEventListener("click", () => {
 
@@ -665,8 +747,10 @@ if(now < birthdayUnlockDate){
 
     openLetter.innerHTML = "📬";
 
+    const currentLetter = LETTERS[currentLang] || LETTERS.id;
+
     document.getElementById("letterContent").innerHTML =
-        letterText.replace(/\n/g,"<br>");
+        currentLetter.replace(/\n/g,"<br>");
 
     confetti({
         particleCount:200,
@@ -1333,7 +1417,7 @@ muteBtn.addEventListener("click", () => {
 });
 const LANG = {
     en: {
-
+        letterTitle:"To Nayla,",
         gallery2023:"The First Step of a Beautiful Journey",
         gallery2024:"Growing Through JKT48 School",
         gallery2025:"Promoted to Core Member & Trusted Translator at Sister Reunion Festiva",
@@ -1409,7 +1493,10 @@ const LANG = {
 
         muteOn: "🔊 Music ON",
         muteOff: "🔇 Music OFF",
-
+        lockDaysLabel: "Hari",
+        lockHoursLabel: "Jam",
+        lockMinutesLabel: "Menit",
+        lockSecondsLabel: "Detik",
         day: "Days",
         hour: "Hours",
         minute: "Minutes",
@@ -1429,7 +1516,7 @@ const LANG = {
     },
 
     id: {
-
+        letterTitle:"Untuk Nayla,",
         gallery2023: "Langkah Pertama dari Sebuah Perjalanan Indah",
 
         gallery2024: "Bertumbuh Bersama JKT48 School",
@@ -1450,6 +1537,10 @@ const LANG = {
         timeline2026:
         "2026 — Selamat Ulang Tahun ke-19, Nayla!",
         Name: 'NAYLA',
+        lockDaysLabel: "Hari",
+        lockHoursLabel: "Jam",
+        lockMinutesLabel: "Menit",
+        lockSecondsLabel: "Detik",       
         day: "Hari",
         hour: "Jam",
         minute: "Menit",
@@ -1529,7 +1620,7 @@ const LANG = {
     },
 
     jp: {
-
+        letterTitle:"ナイラへ",
         gallery2023: "美しい旅の第一歩",
 
         gallery2024: "JKT48 Schoolとともに成長",
@@ -1548,6 +1639,10 @@ const LANG = {
 
         timeline2026:
         "2026 — ナイラ、19歳のお誕生日おめでとう！",
+        lockDaysLabel: "日",
+        lockHoursLabel: "時間",
+        lockMinutesLabel: "分",
+        lockSecondsLabel: "秒",
 
         day: "日",
         hour: "時間",
@@ -1627,7 +1722,20 @@ const LANG = {
     }
 };
 
+let currentLang =
+    localStorage.getItem("language") || "id";
+
+function getLetterText() {
+
+    return LETTERS[currentLang]
+        || LETTERS.id;
+
+}
+
 function changeLanguage(lang) {
+    
+    currentLang = lang;
+
     const t = LANG[lang];
 
     const setText = (id, value) => {
@@ -1649,13 +1757,16 @@ function changeLanguage(lang) {
     setText("timeline2024", t.timeline2024);
     setText("timeline2025", t.timeline2025);
     setText("timeline2026", t.timeline2026);
-
+    setText("letterTitle", t.letterTitle);
     setText("gallery2023", t.gallery2023);
     setText("gallery2024", t.gallery2024);
     setText("gallery2025", t.gallery2025);
     setHTML("gallery2026RHCONCERT", t.gallery2026RHCONCERT);
     setText("gallery2026", t.gallery2026);
-
+    setText("lockDaysLabel", t.lockDaysLabel);
+    setText("lockHoursLabel", t.lockHoursLabel);
+    setText("lockMinutesLabel", t.lockMinutesLabel);
+    setText("lockSecondsLabel", t.lockSecondsLabel);
     setText("dayLabel", t.day);
     setText("hourLabel", t.hour);
     setText("minuteLabel", t.minute);
@@ -1739,10 +1850,36 @@ function changeLanguage(lang) {
     setQuery("#finalScene p", t.finalText);
 
     localStorage.setItem("language", lang);
+
+    updateSecretLetter();
+    }
+
+function updateSecretLetter() {
+
+    const letterContent =
+        document.getElementById("letterContent");
+
+    if (!letterContent) return;
+
+    letterContent.innerHTML =
+        (LETTERS[currentLang] || LETTERS.id)
+        .replace(/\n/g, "<br>");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    
+
+
+    currentLang =
+            localStorage.getItem(
+                "language"
+            ) || "id";
+
+        changeLanguage(
+            currentLang
+        );
+
+        updateSecretLetter();
+
     document.querySelectorAll(".lang-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             changeLanguage(btn.dataset.lang);

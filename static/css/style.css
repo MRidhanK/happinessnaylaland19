@@ -1157,6 +1157,16 @@ button{
     border:2px solid #FFD700;
 }
 
+.secret-letter{
+    text-align:left;
+}
+
+#letterContent{
+    white-space:pre-line;
+    line-height:1.8;
+    font-size:15px;
+}
+
 .secret-letter.show{
     display:block;
 }
@@ -2635,3 +2645,4 @@ linear-gradient(
     color:gold;
     font-weight:bold;
 }
+
